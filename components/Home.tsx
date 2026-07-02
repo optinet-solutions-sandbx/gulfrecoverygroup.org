@@ -13,11 +13,12 @@ import { site } from '@/data/site';
 import { content } from '@/data/content';
 import { hrefFor } from '@/data/routes';
 
+// Reveal on mount (not on scroll): guarantees content is always visible, even
+// far below the fold, instead of being held at opacity:0 until intersection.
 const reveal = (delay = 0) => ({
-  initial: { opacity: 0, y: 24 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: '-60px' },
-  transition: { duration: 0.55, ease: 'easeOut' as const, delay },
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.5, ease: 'easeOut' as const, delay: Math.min(delay, 0.5) },
 });
 
 const AXIS_ICONS = [ShieldCheck, AlertTriangle, Smartphone, FileBarChart2, BookOpen, Users];

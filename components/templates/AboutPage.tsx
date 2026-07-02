@@ -7,11 +7,11 @@ import { fontFor } from '@/lib/utils';
 import { content } from '@/data/content';
 import PageHeader from '@/components/PageHeader';
 
+// Reveal on mount so mission/vision/values are never left invisible below the fold.
 const reveal = (delay = 0) => ({
-  initial: { opacity: 0, y: 20 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: '-60px' },
-  transition: { duration: 0.5, ease: 'easeOut' as const, delay },
+  initial: { opacity: 0, y: 18 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.45, ease: 'easeOut' as const, delay: Math.min(delay, 0.4) },
 });
 
 export default function AboutPage({ locale }: { locale: Locale }) {
