@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
+@import "tailwindcss";
+
+/* ══════════════════════════════════════════════════════════════════
+   GRG INVESTOR-PROTECTION INITIATIVE  ·  .ORG
+   Institutional / public-interest design system.
+   Deliberately distinct from the .com (dark + gold) and .net satellites:
+   white paper background, deep institutional navy, official green,
+   soft grey. Government-report tone, not a commercial landing page.
+   ══════════════════════════════════════════════════════════════════ */
+
+@theme {
+  /* institutional navy */
+  --color-navy:        #0f2c4d;
+  --color-navy-deep:   #0a2036;
+  --color-navy-700:    #14416e;
+  --color-navy-500:    #2e6091;
+  /* official green (protection / verified) */
+  --color-official:    #0e7a54;
+  --color-official-700:#0a5e41;
+  --color-official-50: #e7f4ee;
+  /* alert (warnings) */
+  --color-alert:       #b23b2e;
+  --color-alert-50:    #fbeceb;
+  --color-amber:       #a8620d;
+  /* neutrals */
+  --color-paper:       #ffffff;
+  --color-panel:       #f4f7fa;
+  --color-panel-2:     #eef2f7;
+  --color-line:        #dbe3ec;
+  --color-line-soft:   #e8edf3;
+  --color-ink:         #14202b;
+  --color-slate:       #51637a;
+  --color-slate-soft:  #6f8093;
+
+  --font-plex-ar:      'IBM Plex Sans Arabic', sans-serif;
+  --font-public:       'Public Sans', system-ui, sans-serif;
+}
+
+:root {
+  --navy:        #0f2c4d;
+  --navy-deep:   #0a2036;
+  --navy-700:    #14416e;
+  --navy-500:    #2e6091;
+  --official:    #0e7a54;
+  --official-700:#0a5e41;
+  --official-50: #e7f4ee;
+  --alert:       #b23b2e;
+  --alert-50:    #fbeceb;
+  --amber:       #a8620d;
+  --paper:       #ffffff;
+  --panel:       #f4f7fa;
+  --panel-2:     #eef2f7;
+  --line:        #dbe3ec;
+  --line-soft:   #e8edf3;
+  --ink:         #14202b;
+  --slate:       #51637a;
+  --slate-soft:  #6f8093;
+  --font-ar:     'IBM Plex Sans Arabic', sans-serif;
+  --font-en:     'Public Sans', system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+:lang(ar) { font-family: var(--font-ar); }
+:lang(en) { font-family: var(--font-en); }
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+/* Institutional headings: navy, tight, weighty. EN gets Public Sans; AR Plex Arabic. */
+h1, h2, h3, h4 { color: var(--navy); font-weight: 700; letter-spacing: -0.01em; }
+:lang(ar) h1, :lang(ar) h2, :lang(ar) h3, :lang(ar) h4 { letter-spacing: 0; font-weight: 700; }
+
+/* ── layout helpers ── */
+.wrap        { max-width: 1180px; margin-inline: auto; padding-inline: 24px; }
+.wrap-narrow { max-width: 860px;  margin-inline: auto; padding-inline: 24px; }
+
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+@media (max-width: 860px) {
+  .grid-3 { grid-template-columns: 1fr; }
+  .grid-2 { grid-template-columns: 1fr; }
+}
+
+/* eyebrow / section kicker: small caps rule, government-document feel */
+.kicker {
+  display: inline-flex; align-items: center; gap: 9px;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--official-700);
+}
+:lang(ar) .kicker { letter-spacing: 0.04em; text-transform: none; font-weight: 700; }
+
+/* thin institutional divider under headings */
+.rule { width: 54px; height: 3px; background: var(--official); border-radius: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
