@@ -16,15 +16,15 @@ export interface Route {
 
 export const ROUTES: Route[] = [
   { id: 'about',       kind: 'about',   en: 'about-initiative',   ar: 'عن-المبادرة',
-    navLabel: { ar: 'عن المبادرة',       en: 'About the Initiative' } },
+    navLabel: { ar: 'عن المبادرة',       en: 'About' } },
   { id: 'protection',  kind: 'topics',  en: 'investor-protection', ar: 'حماية-المستثمرين',
     navLabel: { ar: 'حماية المستثمرين',  en: 'Investor Protection' } },
   { id: 'alerts',      kind: 'topics',  en: 'alerts-warnings',    ar: 'بلاغات-وتحذيرات',
-    navLabel: { ar: 'بلاغات وتحذيرات',   en: 'Alerts & Warnings' } },
+    navLabel: { ar: 'بلاغات وتحذيرات',   en: 'Alerts' } },
   { id: 'reports',     kind: 'topics',  en: 'awareness-reports',  ar: 'تقارير-توعوية',
-    navLabel: { ar: 'تقارير توعوية',     en: 'Awareness Reports' } },
+    navLabel: { ar: 'تقارير توعوية',     en: 'Reports' } },
   { id: 'resources',   kind: 'topics',  en: 'public-resources',   ar: 'موارد-للجمهور',
-    navLabel: { ar: 'موارد للجمهور',     en: 'Public Resources' } },
+    navLabel: { ar: 'موارد للجمهور',     en: 'Resources' } },
   { id: 'contact',     kind: 'contact', en: 'contact',            ar: 'تواصل-معنا',
     navLabel: { ar: 'تواصل معنا',        en: 'Contact' } },
 

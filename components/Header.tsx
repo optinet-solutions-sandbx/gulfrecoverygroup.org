@@ -61,7 +61,7 @@ export default function Header({ locale }: { locale: Locale }) {
           boxShadow: scrolled ? '0 2px 14px rgba(15,44,77,0.07)' : 'none',
           transition: 'box-shadow 0.25s',
         }}>
-          <div className="wrap" style={{ height: 70, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16 }}>
+          <div style={{ maxWidth: 1260, width: '100%', margin: '0 auto', paddingInline: 24, height: 70, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16 }}>
             {/* logo */}
             <Link href={home} style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
               <Emblem size={40} />
@@ -76,7 +76,7 @@ export default function Header({ locale }: { locale: Locale }) {
             </Link>
 
             {/* desktop nav */}
-            <nav className="desktop-nav" style={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+            <nav className="desktop-nav" style={{ display: 'flex', alignItems: 'center', gap: 1 }}>
               <Link href={home} style={navLink(isActive(home), font)}>{t.ui.home}</Link>
               {navItems.map(item => (
                 <Link key={item.id} href={item.href} style={navLink(isActive(item.href), font)}>
@@ -96,18 +96,18 @@ export default function Header({ locale }: { locale: Locale }) {
 
               <a href={site.officialSite} target="_blank" rel="noopener noreferrer" className="cta-official" style={{
                 display: 'inline-flex', alignItems: 'center', gap: 7, fontFamily: font, fontSize: 13, fontWeight: 600,
-                color: 'var(--navy)', padding: '9px 16px', border: '1.5px solid var(--navy)', borderRadius: 6, whiteSpace: 'nowrap',
+                color: 'var(--navy)', padding: '9px 15px', border: '1.5px solid var(--navy)', borderRadius: 6, whiteSpace: 'nowrap',
               }}>
-                {t.ui.officialSite}
+                {isRTL ? t.ui.officialSite : 'Official site'}
                 <ExternalLink size={14} />
               </a>
 
               <a href={site.whatsappHref} target="_blank" rel="noopener noreferrer" className="cta-wa" style={{
                 display: 'inline-flex', alignItems: 'center', gap: 7, fontFamily: font, fontSize: 13, fontWeight: 600,
-                color: '#fff', background: 'var(--official)', padding: '10px 16px', borderRadius: 6, whiteSpace: 'nowrap',
+                color: '#fff', background: 'var(--official)', padding: '10px 15px', borderRadius: 6, whiteSpace: 'nowrap',
               }}>
                 <MessageCircle size={15} />
-                {t.ui.whatsapp}
+                <span className="wa-label">{isRTL ? t.ui.whatsapp : 'WhatsApp'}</span>
               </a>
 
               <button onClick={() => setOpen(v => !v)} aria-label="menu" className="hamburger" style={{
@@ -122,14 +122,14 @@ export default function Header({ locale }: { locale: Locale }) {
       </header>
 
       <style>{`
-        @media (max-width: 1080px) {
-          .desktop-nav { display: none !important; }
-          .hamburger   { display: flex !important; }
+        @media (max-width: 1260px) {
+          .desktop-nav  { display: none !important; }
+          .hamburger    { display: flex !important; }
           .cta-official { display: none !important; }
         }
         @media (max-width: 560px) {
           .logo-text   { display: none !important; }
-          .cta-wa span { display: none !important; }
+          .wa-label    { display: none !important; }
           .lang-toggle { display: none !important; }
         }
         @media (max-width: 720px) {
@@ -200,10 +200,10 @@ function navLink(active: boolean, font: string): React.CSSProperties {
   return {
     position: 'relative',
     fontFamily: font,
-    fontSize: 14,
+    fontSize: 13.5,
     fontWeight: active ? 700 : 500,
     color: active ? 'var(--official-700)' : 'var(--slate)',
-    padding: '10px 12px',
+    padding: '10px 10px',
     borderRadius: 6,
     whiteSpace: 'nowrap',
     borderBottom: active ? '2px solid var(--official)' : '2px solid transparent',
