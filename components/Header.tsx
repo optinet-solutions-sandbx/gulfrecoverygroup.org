@@ -9,7 +9,8 @@ import type { Locale } from '@/lib/utils';
 import { fontFor } from '@/lib/utils';
 import { site } from '@/data/site';
 import { content } from '@/data/content';
-import { ROUTES, NAV_IDS, hrefFor, altLocaleHref } from '@/data/routes';
+import { ROUTES, NAV_IDS, hrefFor, altLocaleHref, routeBySlug, norm } from '@/data/routes';
+import { ARTICLE_SECTION } from '@/data/articles';
 import Emblem from './Emblem';
 
 const byId = new Map(ROUTES.map(r => [r.id, r]));
@@ -31,6 +32,13 @@ export default function Header({ locale }: { locale: Locale }) {
   const curSlug = isRTL ? pathname.replace(/^\//, '') : pathname.replace(/^\/en\/?/, '');
   const altHref = altLocaleHref(decodeURIComponent(curSlug), locale);
 
+  // Match by route id, not by href string — pathname vs. hrefFor() can disagree on
+  // percent-encoding for Arabic slugs, so string comparison silently never matches.
+  const currentRouteId = routeBySlug(curSlug, locale)?.id;
+  const activeArticleSection = isRTL ? ARTICLE_SECTION[norm(curSlug)] : undefined;
+  const activeId = currentRouteId ?? activeArticleSection;
+  const isHome = pathname === home;
+
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 12);
     window.addEventListener('scroll', fn, { passive: true });
@@ -38,8 +46,7 @@ export default function Header({ locale }: { locale: Locale }) {
   }, []);
   useEffect(() => { setOpen(false); }, [pathname]);
 
-  const isActive = (href: string) =>
-    href === home ? pathname === href : pathname.startsWith(href);
+  const isActive = (id: string) => (id === 'home' ? isHome : id === activeId);
 
   return (
     <>
@@ -77,9 +84,9 @@ export default function Header({ locale }: { locale: Locale }) {
 
             {/* desktop nav */}
             <nav className="desktop-nav" style={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-              <Link href={home} style={navLink(isActive(home), font)}>{t.ui.home}</Link>
+              <Link href={home} style={navLink(isActive('home'), font)}>{t.ui.home}</Link>
               {navItems.map(item => (
-                <Link key={item.id} href={item.href} style={navLink(isActive(item.href), font)}>
+                <Link key={item.id} href={item.href} style={navLink(isActive(item.id), font)}>
                   {item.label}
                 </Link>
               ))}
@@ -167,9 +174,9 @@ export default function Header({ locale }: { locale: Locale }) {
                   <motion.div key={item.id} initial={{ opacity: 0, x: isRTL ? -12 : 12 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.04 }}>
                     <Link href={item.href} style={{
                       display: 'block', padding: '13px 14px', marginBottom: 3, borderRadius: 8,
-                      fontFamily: font, fontSize: 15, fontWeight: isActive(item.href) ? 700 : 500,
-                      color: isActive(item.href) ? 'var(--official-700)' : 'var(--navy)',
-                      background: isActive(item.href) ? 'var(--official-50)' : 'transparent',
+                      fontFamily: font, fontSize: 15, fontWeight: isActive(item.id) ? 700 : 500,
+                      color: isActive(item.id) ? 'var(--official-700)' : 'var(--navy)',
+                      background: isActive(item.id) ? 'var(--official-50)' : 'transparent',
                       textAlign: isRTL ? 'right' : 'left',
                     }}>
                       {item.label}

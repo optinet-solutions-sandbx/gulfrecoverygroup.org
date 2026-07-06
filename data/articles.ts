@@ -4151,3 +4151,27 @@ export const articles: Record<string, Article> = {
 export function articleBySlug(slug: string): Article | undefined {
   return articles[norm(slug)];
 }
+
+/** Which primary nav section each article belongs to, for header active-state highlighting. */
+export const ARTICLE_SECTION: Record<string, 'protection' | 'alerts' | 'reports' | 'resources'> = {
+  [guaranteedProfitRisk.slug]: 'protection',
+  [untrustworthyPlatformSigns.slug]: 'protection',
+  [whatToDoIfSuspicious.slug]: 'protection',
+  [verifyBeforeInvesting.slug]: 'protection',
+  [protectFinancialData.slug]: 'protection',
+  [fakeWithdrawalFees.slug]: 'alerts',
+  [messagingAppFraud.slug]: 'alerts',
+  [fakeDigitalWallets.slug]: 'alerts',
+  [companyImpersonation.slug]: 'alerts',
+  [phishingLinks.slug]: 'alerts',
+  [tradingFraud.slug]: 'reports',
+  [financialAwarenessGulf.slug]: 'reports',
+  [fraudsterBehaviors.slug]: 'reports',
+  [cryptoFraud.slug]: 'reports',
+  [digitalSecurity.slug]: 'reports',
+  [preInvestmentChecklist.slug]: 'resources',
+  [walletProtectionGuide.slug]: 'resources',
+  [suspiciousRequestsGuide.slug]: 'resources',
+  [evidenceKeepingGuide.slug]: 'resources',
+  [companyVerificationGuide.slug]: 'resources',
+};
