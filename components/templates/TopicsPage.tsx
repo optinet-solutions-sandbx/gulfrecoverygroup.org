@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { FileText, ExternalLink, MessageCircle } from 'lucide-react';
 import type { Locale } from '@/lib/utils';
@@ -27,21 +28,35 @@ export default function TopicsPage({ locale, data }: { locale: Locale; data: Top
       <section style={{ background: '#fff', padding: '68px 0' }}>
         <div className="wrap">
           <div className="grid-2">
-            {data.topics.map((topic, i) => (
-              <motion.article key={topic.title} {...reveal(i * 0.05)} style={{
+            {data.topics.map((topic, i) => {
+              const cardStyle = {
                 display: 'flex', gap: 18, padding: '26px', background: 'var(--panel)',
                 border: '1px solid var(--line)', borderRadius: 12,
                 borderInlineStart: '4px solid var(--official)',
-              }}>
-                <div style={{ flexShrink: 0, width: 44, height: 44, borderRadius: 10, background: '#fff', border: '1px solid var(--line)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <FileText size={19} style={{ color: 'var(--official)' }} />
-                </div>
-                <div>
-                  <h2 style={{ margin: '2px 0 8px', fontSize: 17.5, color: 'var(--navy)' }}>{topic.title}</h2>
-                  <p style={{ margin: 0, fontSize: 14.5, lineHeight: 1.75, color: 'var(--slate)' }}>{topic.body}</p>
-                </div>
-              </motion.article>
-            ))}
+              } as const;
+              const card = (
+                <>
+                  <div style={{ flexShrink: 0, width: 44, height: 44, borderRadius: 10, background: '#fff', border: '1px solid var(--line)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <FileText size={19} style={{ color: 'var(--official)' }} />
+                  </div>
+                  <div>
+                    <h2 style={{ margin: '2px 0 8px', fontSize: 17.5, color: 'var(--navy)' }}>{topic.title}</h2>
+                    <p style={{ margin: 0, fontSize: 14.5, lineHeight: 1.75, color: 'var(--slate)' }}>{topic.body}</p>
+                  </div>
+                </>
+              );
+              return topic.slug ? (
+                <motion.div key={topic.title} {...reveal(i * 0.05)}>
+                  <Link href={`/${topic.slug}`} style={{ ...cardStyle, textDecoration: 'none', cursor: 'pointer' }}>
+                    {card}
+                  </Link>
+                </motion.div>
+              ) : (
+                <motion.article key={topic.title} {...reveal(i * 0.05)} style={cardStyle}>
+                  {card}
+                </motion.article>
+              );
+            })}
           </div>
         </div>
       </section>

@@ -44,6 +44,8 @@ const byId = new Map(ROUTES.map(r => [r.id, r]));
 const byEn = new Map(ROUTES.map(r => [norm(r.en), r]));
 const byAr = new Map(ROUTES.map(r => [norm(r.ar), r]));
 
+export { norm };
+
 export function hrefFor(id: string, locale: Locale): string {
   if (id === 'home') return locale === 'ar' ? '/' : '/en';
   const r = byId.get(id);

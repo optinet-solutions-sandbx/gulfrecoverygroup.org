@@ -103,6 +103,14 @@ h1, h2, h3, h4 { color: var(--navy); font-weight: 700; letter-spacing: -0.01em; 
 /* thin institutional divider under headings */
 .rule { width: 54px; height: 3px; background: var(--official); border-radius: 2px; }
 
+/* long-form guide pages: single column by default, TOC rail added at desktop widths */
+.article-layout { display: grid; grid-template-columns: 1fr; gap: 36px; align-items: start; }
+.article-toc { order: -1; margin-top: 32px; }
+@media (min-width: 960px) {
+  .article-layout.has-toc { grid-template-columns: minmax(0, 1fr) 260px; }
+  .article-toc { order: 0; margin-top: 0; position: sticky; top: 24px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: .01ms !important;
