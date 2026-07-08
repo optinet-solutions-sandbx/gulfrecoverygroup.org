@@ -94,7 +94,7 @@ const ar: Dict = {
   home: {
     heroTitle: 'معًا لرفع الوعي وحماية المستثمرين من الاحتيال المالي',
     heroLead:
-      'مبادرة مجموعة الخليج لحماية المستثمرين من الاحتيال المالي تهدف إلى نشر الوعي، وتوفير معلومات توعوية تساعد الأفراد على التعرف على أساليب الاحتيال المالي والاستثماري، وفهم المخاطر قبل اتخاذ أي قرار مالي.',
+      'المركز العربي لاسترجاع الأموال يهدف إلى نشر الوعي، وتوفير معلومات توعوية تساعد الأفراد على التعرف على أساليب الاحتيال المالي والاستثماري، وفهم المخاطر قبل اتخاذ أي قرار مالي.',
     aboutTitle: 'عن المبادرة',
     aboutBody:
       'تم إطلاق هذه المبادرة بهدف تعزيز الوعي المالي في العالم العربي، وتسليط الضوء على أساليب الاحتيال المنتشرة في مجالات التداول، الاستثمار، العملات الرقمية، والتحويلات المالية. تركّز المبادرة على التوعية، الوقاية، ونشر المعرفة بطريقة واضحة ومباشرة.',
@@ -145,7 +145,7 @@ const ar: Dict = {
   about: {
     title: 'عن المبادرة',
     body:
-      'مبادرة مجموعة الخليج لحماية المستثمرين من الاحتيال المالي هي مبادرة توعوية تهدف إلى تعزيز الوعي العام حول مخاطر الاحتيال المالي والاستثماري، وتقديم معلومات تساعد الأفراد على فهم الأساليب الشائعة التي يستخدمها المحتالون.',
+      'المركز العربي لاسترجاع الأموال هو مبادرة توعوية تهدف إلى تعزيز الوعي العام حول مخاطر الاحتيال المالي والاستثماري، وتقديم معلومات تساعد الأفراد على فهم الأساليب الشائعة التي يستخدمها المحتالون.',
     mission: 'نشر الوعي المالي والاستثماري وحماية الأفراد من الوقوع في الاحتيال.',
     vision: 'أن تكون المبادرة مرجعًا عربيًا موثوقًا في مجال التوعية بمخاطر الاحتيال المالي.',
     values: ['المعرفة', 'الشفافية', 'المسؤولية', 'الوقاية', 'حماية الجمهور'],
@@ -251,7 +251,7 @@ const en: Dict = {
   home: {
     heroTitle: 'Together, raising awareness and protecting investors from financial fraud',
     heroLead:
-      'The Gulf Recovery Group Investor Protection Initiative works to spread awareness and to provide educational information that helps individuals recognise financial and investment fraud tactics, and understand the risks before making any financial decision.',
+      'The Arab Center for Fund Recovery works to spread awareness and to provide educational information that helps individuals recognise financial and investment fraud tactics, and understand the risks before making any financial decision.',
     aboutTitle: 'About the Initiative',
     aboutBody:
       'This initiative was launched to strengthen financial literacy across the Arab world, and to shed light on the fraud tactics common in trading, investment, digital currencies, and money transfers. It focuses on awareness, prevention, and sharing knowledge in a clear and direct way.',
@@ -302,7 +302,7 @@ const en: Dict = {
   about: {
     title: 'About the Initiative',
     body:
-      'The Gulf Recovery Group Investor Protection Initiative is an awareness initiative that works to strengthen public understanding of the risks of financial and investment fraud, and to provide information that helps individuals recognise the common methods used by fraudsters.',
+      'The Arab Center for Fund Recovery is an awareness initiative that works to strengthen public understanding of the risks of financial and investment fraud, and to provide information that helps individuals recognise the common methods used by fraudsters.',
     mission: 'To spread financial and investment awareness and protect individuals from falling victim to fraud.',
     vision: 'To become a trusted Arabic reference in awareness of the risks of financial fraud.',
     values: ['Knowledge', 'Transparency', 'Responsibility', 'Prevention', 'Protecting the public'],
@@ -312,11 +312,11 @@ const en: Dict = {
     description:
       'Educational content that helps investors understand risk, recognise the warning signs, and make more informed decisions before dealing with any platform or financial entity.',
     topics: [
-      { title: 'How to verify before you invest', body: 'Essential steps to confirm any party is genuine before you deposit money.' },
-      { title: 'Signs of an untrustworthy platform', body: 'Indicators that expose a suspicious platform before you are caught out.' },
-      { title: 'Protecting your financial data', body: 'How to keep your information and accounts confidential.' },
-      { title: 'The risk of guaranteed returns', body: 'Why a promise of guaranteed profit is an early warning sign.' },
-      { title: 'What to do when something seems wrong', body: 'The right response the moment a worrying sign appears.' },
+      { title: 'How to verify before you invest', body: 'Essential steps to confirm any party is genuine before you deposit money.', slug: 'how-to-verify-before-you-invest' },
+      { title: 'Signs of an untrustworthy platform', body: 'Indicators that expose a suspicious platform before you are caught out.', slug: 'signs-of-an-untrustworthy-platform' },
+      { title: 'Protecting your financial data', body: 'How to keep your information and accounts confidential.', slug: 'protecting-your-financial-data' },
+      { title: 'The risk of guaranteed returns', body: 'Why a promise of guaranteed profit is an early warning sign.', slug: 'the-risk-of-guaranteed-returns' },
+      { title: 'What to do when something seems wrong', body: 'The right response the moment a worrying sign appears.', slug: 'what-to-do-when-something-seems-wrong' },
     ],
   },
   alerts: {
@@ -324,11 +324,11 @@ const en: Dict = {
     description:
       'Awareness alerts about common fraud tactics, without accusing any specific party, intended to raise general public awareness.',
     topics: [
-      { title: 'Fake withdrawal fees', body: 'Extra fees demanded before profits can be withdrawn.' },
-      { title: 'Company impersonation', body: 'Using the names and logos of known entities to deceive victims.' },
-      { title: 'Fraud through messaging apps', body: 'Tempting offers and investments arriving through private messages.' },
-      { title: 'Phishing links', body: 'Links designed to steal your data or login details.' },
-      { title: 'Fake digital wallets', body: 'Counterfeit wallets and platforms built to attract deposits.' },
+      { title: 'Fake withdrawal fees', body: 'Extra fees demanded before profits can be withdrawn.', slug: 'fake-withdrawal-fees' },
+      { title: 'Company impersonation', body: 'Using the names and logos of known entities to deceive victims.', slug: 'company-impersonation' },
+      { title: 'Fraud through messaging apps', body: 'Tempting offers and investments arriving through private messages.', slug: 'fraud-through-messaging-apps' },
+      { title: 'Phishing links', body: 'Links designed to steal your data or login details.', slug: 'phishing-links' },
+      { title: 'Fake digital wallets', body: 'Counterfeit wallets and platforms built to attract deposits.', slug: 'fake-digital-wallets' },
     ],
   },
   reports: {
@@ -336,11 +336,11 @@ const en: Dict = {
     description:
       'Reports and analytical content that help make sense of financial and investment fraud patterns and recent trends in the digital environment.',
     topics: [
-      { title: 'Fraud in trading', body: 'The deception patterns common on trading platforms.' },
-      { title: 'Fraud in digital currencies', body: 'Risks tied to digital assets and cryptocurrencies.' },
-      { title: 'Financial awareness in the Gulf', body: 'The state of financial literacy and its needs in the region.' },
-      { title: 'Digital security', body: 'The basics of protecting devices, accounts, and data.' },
-      { title: 'The behaviour of fraudsters', body: 'How a fraudster builds trust before committing the fraud.' },
+      { title: 'Fraud in trading', body: 'The deception patterns common on trading platforms.', slug: 'fraud-in-trading' },
+      { title: 'Fraud in digital currencies', body: 'Risks tied to digital assets and cryptocurrencies.', slug: 'fraud-in-digital-currencies' },
+      { title: 'Financial awareness in the Gulf', body: 'The state of financial literacy and its needs in the region.', slug: 'financial-awareness-in-the-gulf' },
+      { title: 'Digital security', body: 'The basics of protecting devices, accounts, and data.', slug: 'digital-security' },
+      { title: 'The behaviour of fraudsters', body: 'How a fraudster builds trust before committing the fraud.', slug: 'the-behaviour-of-fraudsters' },
     ],
   },
   resources: {
@@ -348,11 +348,11 @@ const en: Dict = {
     description:
       'Simple, direct material that helps the public understand financial risks and protect their personal and financial information.',
     topics: [
-      { title: 'Pre-investment checklist', body: 'Points to review before you make any financial decision.' },
-      { title: 'Guide to preserving evidence', body: 'How to document your dealings and conversations properly.' },
-      { title: 'Guide to protecting digital wallets', body: 'Steps to secure your digital wallets and accounts.' },
-      { title: 'Guide to verifying companies', body: 'How to check that a party is genuine and licensed.' },
-      { title: 'Guide to handling suspicious requests', body: 'What to do when you receive an unjustified financial request.' },
+      { title: 'Pre-investment checklist', body: 'Points to review before you make any financial decision.', slug: 'pre-investment-checklist' },
+      { title: 'Guide to preserving evidence', body: 'How to document your dealings and conversations properly.', slug: 'guide-to-preserving-evidence' },
+      { title: 'Guide to protecting digital wallets', body: 'Steps to secure your digital wallets and accounts.', slug: 'guide-to-protecting-digital-wallets' },
+      { title: 'Guide to verifying companies', body: 'How to check that a party is genuine and licensed.', slug: 'guide-to-verifying-companies' },
+      { title: 'Guide to handling suspicious requests', body: 'What to do when you receive an unjustified financial request.', slug: 'guide-to-handling-suspicious-requests' },
     ],
   },
   contact: {

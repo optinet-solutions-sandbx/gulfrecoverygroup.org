@@ -1,7 +1,7 @@
 /**
- * Institutional emblem for the initiative: a protection shield with a check.
- * Deliberately distinct from the commercial brand's gold wordmark, it reads
- * as a public-interest / regulatory mark (navy shield, official-green check).
+ * Institutional emblem for the Arab Center for Fund Recovery: a protection
+ * shield with a circular return arrow, signalling "getting your money back"
+ * rather than plain checkmark approval (navy shield, official-green arrow).
  */
 export default function Emblem({ size = 40 }: { size?: number }) {
   return (
@@ -16,7 +16,14 @@ export default function Emblem({ size = 40 }: { size?: number }) {
         fill="#14416e"
       />
       <path
-        d="m17.4 24.3 4.5 4.6 8.7-9"
+        d="M30.4 20.2a7 7 0 1 0-1.6 7.4"
+        stroke="#4fd39c"
+        strokeWidth="3.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M30.6 14.4v5.8h-5.8"
         stroke="#4fd39c"
         strokeWidth="3.2"
         strokeLinecap="round"

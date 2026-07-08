@@ -47,7 +47,7 @@ export default function TopicsPage({ locale, data }: { locale: Locale; data: Top
               );
               return topic.slug ? (
                 <motion.div key={topic.title} {...reveal(i * 0.05)}>
-                  <Link href={`/${topic.slug}`} style={{ ...cardStyle, textDecoration: 'none', cursor: 'pointer' }}>
+                  <Link href={isRTL ? `/${topic.slug}` : `/en/${topic.slug}`} style={{ ...cardStyle, textDecoration: 'none', cursor: 'pointer' }}>
                     {card}
                   </Link>
                 </motion.div>

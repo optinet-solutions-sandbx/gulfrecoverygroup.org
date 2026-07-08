@@ -1,13 +1,19 @@
-import { BookOpenCheck, Clock, ListTree, Info, KeyRound, CircleCheckBig, CircleCheck, CircleX } from 'lucide-react';
+import { BookOpenCheck, ListTree, Info, KeyRound, CircleCheckBig, CircleCheck, CircleX } from 'lucide-react';
+import type { Locale } from '@/lib/utils';
 import { fontFor } from '@/lib/utils';
 import { content } from '@/data/content';
 import type { Article, ArticleBlock } from '@/data/articles';
 import PageHeader from '@/components/PageHeader';
 
 /* Recurring rhetorical closers every guide uses — surfaced as callout cards instead of plain text. */
-const NOTE_MARKERS = ['تذكر دائم', 'معلومة مهمة', 'نصيحة مهمة'];
-const RULE_MARKERS = ['قاعدة ذهبية', 'قاعدة المستثمر الواعي', 'قاعدة بسيطة', 'قاعدة مهمة'];
-const SUMMARY_MARKERS = ['الخلاصة'];
+const NOTE_MARKERS = ['تذكر دائم', 'معلومة مهمة', 'نصيحة مهمة', 'Always remember', 'Important note', 'Important tip'];
+const RULE_MARKERS = ['قاعدة ذهبية', 'قاعدة المستثمر الواعي', 'قاعدة بسيطة', 'قاعدة مهمة', 'rule'];
+const SUMMARY_MARKERS = ['الخلاصة', 'Conclusion'];
+
+const LABELS = {
+  ar: { guide: 'دليل توعوي', toc: 'محتويات الدليل' },
+  en: { guide: 'Awareness guide', toc: 'Guide contents' },
+} as const;
 
 type CalloutKind = 'note' | 'rule' | 'summary';
 
@@ -53,12 +59,6 @@ function groupBlocks(blocks: ArticleBlock[]): Group[] {
   }
   if (current.blocks.length) groups.push(current);
   return groups;
-}
-
-function wordsOf(block: ArticleBlock): number {
-  if (block.type === 'ul') return block.items.join(' ').split(/\s+/).filter(Boolean).length;
-  if (block.type === 'table') return [...block.headers, ...block.rows.flat()].join(' ').split(/\s+/).filter(Boolean).length;
-  return block.text.split(/\s+/).filter(Boolean).length;
 }
 
 function PlainList({ items }: { items: string[] }) {
@@ -160,12 +160,11 @@ function Callout({ type, heading, blocks, id }: { type: CalloutKind; heading: st
   );
 }
 
-export default function ArticlePage({ article }: { article: Article }) {
-  const font = fontFor('ar');
+export default function ArticlePage({ article, locale = 'ar' }: { article: Article; locale?: Locale }) {
+  const isRTL = locale === 'ar';
+  const font = fontFor(locale);
+  const t = LABELS[locale];
   const allBlocks = [...article.intro, ...article.blocks];
-
-  const wordCount = allBlocks.reduce((acc, b) => acc + wordsOf(b), 0);
-  const readMinutes = Math.max(2, Math.round(wordCount / 180));
 
   const h2Texts = allBlocks.filter(b => b.type === 'h2').map(b => (b as { text: string }).text);
   const tocItems = h2Texts.map((text, idx) => ({ id: `section-${idx}`, text }));
@@ -187,16 +186,13 @@ export default function ArticlePage({ article }: { article: Article }) {
   });
 
   return (
-    <div dir="rtl" style={{ fontFamily: font }}>
-      <PageHeader locale="ar" title={article.title} lead={article.description} />
+    <div dir={isRTL ? 'rtl' : 'ltr'} style={{ fontFamily: font }}>
+      <PageHeader locale={locale} title={article.title} lead={article.description} />
 
       <div className="wrap" style={{ padding: '22px 24px 0' }}>
         <div className="kicker">
           <BookOpenCheck size={14} aria-hidden />
-          دليل توعوي
-          <span style={{ opacity: 0.35 }} aria-hidden>•</span>
-          <Clock size={14} aria-hidden />
-          {`قراءة ${readMinutes} ${readMinutes === 1 ? 'دقيقة' : 'دقائق'}`}
+          {t.guide}
         </div>
       </div>
 
@@ -207,7 +203,7 @@ export default function ArticlePage({ article }: { article: Article }) {
               {renderGroups(introGroups)}
               {renderGroups(bodyGroups)}
               <div style={{ marginTop: 32, padding: '20px 22px', background: 'var(--panel)', borderInlineStart: '4px solid var(--official)', borderRadius: 10 }}>
-                <p style={{ margin: 0, fontSize: 14, lineHeight: 1.75, color: 'var(--slate)' }}>{content.ar.footer.disclaimer}</p>
+                <p style={{ margin: 0, fontSize: 14, lineHeight: 1.75, color: 'var(--slate)' }}>{content[locale].footer.disclaimer}</p>
               </div>
             </article>
 
@@ -216,7 +212,7 @@ export default function ArticlePage({ article }: { article: Article }) {
                 <div style={{ border: '1px solid var(--line)', borderRadius: 12, padding: '18px 20px', background: 'var(--panel)' }}>
                   <div className="kicker" style={{ marginBottom: 14 }}>
                     <ListTree size={14} aria-hidden />
-                    محتويات الدليل
+                    {t.toc}
                   </div>
                   <nav style={{ display: 'flex', flexDirection: 'column' }}>
                     {tocItems.map((item, idx) => (

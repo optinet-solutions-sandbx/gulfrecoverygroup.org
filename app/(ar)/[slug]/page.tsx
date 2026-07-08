@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function ArSlugPage({ params }: Props) {
   const { slug } = await params;
   const article = articleBySlug(slug);
-  if (article) return <ArticlePage article={article} />;
+  if (article) return <ArticlePage article={article} locale="ar" />;
   const route = routeBySlug(slug, 'ar');
   if (!route) notFound();
   return <RouteRenderer route={route} locale="ar" />;

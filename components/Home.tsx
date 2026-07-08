@@ -154,7 +154,7 @@ export default function Home({ locale }: { locale: Locale }) {
                 padding: '20px 0', borderBottom: i < t.home.steps.length - 1 ? '1px solid var(--line-soft)' : 'none',
               }}>
                 <div style={{ flexShrink: 0, width: 44, height: 44, borderRadius: 10, background: 'var(--official-50)', border: '1px solid #cbe6d9', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18, fontWeight: 800, color: 'var(--official-700)' }}>
-                  {isRTL ? toArabicDigit(i + 1) : i + 1}
+                  {i + 1}
                 </div>
                 <div>
                   <h3 style={{ margin: '2px 0 5px', fontSize: 16.5 }}>{s.title}</h3>
@@ -238,8 +238,4 @@ function cardStyle(): React.CSSProperties {
 }
 function iconBox(): React.CSSProperties {
   return { width: 46, height: 46, borderRadius: 10, background: 'var(--official-50)', border: '1px solid #cbe6d9', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 18 };
-}
-
-function toArabicDigit(n: number): string {
-  return String(n).replace(/[0-9]/g, d => '٠١٢٣٤٥٦٧٨٩'[+d]);
 }

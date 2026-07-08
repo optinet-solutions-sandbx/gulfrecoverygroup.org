@@ -11,6 +11,7 @@ import { site } from '@/data/site';
 import { content } from '@/data/content';
 import { ROUTES, NAV_IDS, hrefFor, altLocaleHref, routeBySlug, norm } from '@/data/routes';
 import { ARTICLE_SECTION } from '@/data/articles';
+import { ARTICLE_SECTION_EN } from '@/data/articles.en';
 import Emblem from './Emblem';
 
 const byId = new Map(ROUTES.map(r => [r.id, r]));
@@ -35,7 +36,7 @@ export default function Header({ locale }: { locale: Locale }) {
   // Match by route id, not by href string — pathname vs. hrefFor() can disagree on
   // percent-encoding for Arabic slugs, so string comparison silently never matches.
   const currentRouteId = routeBySlug(curSlug, locale)?.id;
-  const activeArticleSection = isRTL ? ARTICLE_SECTION[norm(curSlug)] : undefined;
+  const activeArticleSection = isRTL ? ARTICLE_SECTION[norm(curSlug)] : ARTICLE_SECTION_EN[norm(curSlug)];
   const activeId = currentRouteId ?? activeArticleSection;
   const isHome = pathname === home;
 
@@ -72,13 +73,8 @@ export default function Header({ locale }: { locale: Locale }) {
             {/* logo */}
             <Link href={home} style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
               <Emblem size={40} />
-              <span style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.2 }} className="logo-text">
-                <span style={{ fontFamily: font, fontWeight: 700, fontSize: isRTL ? 14 : 14.5, color: 'var(--navy)' }}>
-                  {site.short[locale]}
-                </span>
-                <span style={{ fontFamily: font, fontWeight: 500, fontSize: 10.5, color: 'var(--slate-soft)', letterSpacing: isRTL ? 0 : '0.03em' }}>
-                  {isRTL ? 'مجموعة الخليج' : 'Gulf Recovery Group'}
-                </span>
+              <span style={{ fontFamily: font, fontWeight: 700, fontSize: isRTL ? 14 : 14.5, color: 'var(--navy)' }} className="logo-text">
+                {site.short[locale]}
               </span>
             </Link>
 

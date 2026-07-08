@@ -14,19 +14,19 @@ export const site = {
   officialSite: 'https://gulfrecoverygroup.com',
 
   // Official WhatsApp (digits only, for wa.me). TODO: real number before launch.
-  whatsapp: '971500000000',
-  whatsappHref: 'https://wa.me/971500000000',
+  whatsapp: '447429691987',
+  whatsappHref: 'https://api.whatsapp.com/send/?phone=447429691987&text&type=phone_number&app_absent=0',
 
   // General enquiry inbox for the initiative (not a sales line).
   email: 'info@grg-investor-protection.org', // TODO: confirm
 
   name: {
-    ar: 'مبادرة مجموعة الخليج لحماية المستثمرين من الاحتيال المالي',
-    en: 'Gulf Recovery Group Investor Protection Initiative',
+    ar: 'المركز العربي لاسترجاع الأموال',
+    en: 'Arab Center for Fund Recovery',
   },
   short: {
-    ar: 'مبادرة حماية المستثمرين',
-    en: 'Investor Protection Initiative',
+    ar: 'المركز العربي لاسترجاع الأموال',
+    en: 'Arab Center for Fund Recovery',
   },
   tagline: {
     ar: 'مبادرة توعوية مستقلة لحماية المستثمرين من الاحتيال المالي',

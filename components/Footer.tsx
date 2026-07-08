@@ -49,10 +49,7 @@ export default function Footer({ locale }: { locale: Locale }) {
         <div className="foot-brand">
           <Link href={home} style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
             <Emblem size={40} />
-            <span style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.3 }}>
-              <span style={{ fontWeight: 700, fontSize: 15, color: '#fff' }}>{site.short[locale]}</span>
-              <span style={{ fontSize: 11, color: '#8fa2b6' }}>{isRTL ? 'مجموعة الخليج' : 'Gulf Recovery Group'}</span>
-            </span>
+            <span style={{ fontWeight: 700, fontSize: 15, color: '#fff' }}>{site.short[locale]}</span>
           </Link>
           <p style={{ margin: 0, fontSize: 13.5, lineHeight: 1.75, color: '#9fb0c2', maxWidth: 380 }}>{t.footer.blurb}</p>
         </div>
