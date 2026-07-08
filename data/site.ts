@@ -18,7 +18,7 @@ export const site = {
   whatsappHref: 'https://api.whatsapp.com/send/?phone=447429691987&text&type=phone_number&app_absent=0',
 
   // General enquiry inbox for the initiative (not a sales line).
-  email: 'info@grg-investor-protection.org', // TODO: confirm
+  email: 'info@gulfrecoverygroup.com',
 
   name: {
     ar: 'المركز العربي لاسترجاع الأموال',
