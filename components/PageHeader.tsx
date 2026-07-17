@@ -16,7 +16,7 @@ export default function PageHeader({ locale, title, lead }: { locale: Locale; ti
       <div aria-hidden style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px)', backgroundSize: '56px 56px', maskImage: 'linear-gradient(180deg,#000,transparent)', WebkitMaskImage: 'linear-gradient(180deg,#000,transparent)' }} />
       <div className="wrap" style={{ position: 'relative', padding: '46px 24px 52px' }}>
         <nav style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 12.5, color: '#9fb4c9', marginBottom: 18 }}>
-          <Link href={home} style={{ color: '#9fb4c9' }}>{content[locale].ui.breadcrumbHome}</Link>
+          <Link href={home} prefetch={false} style={{ color: '#9fb4c9' }}>{content[locale].ui.breadcrumbHome}</Link>
           <Sep size={14} style={{ opacity: 0.6 }} aria-hidden />
           <span style={{ color: '#fff' }}>{title}</span>
         </nav>

@@ -40,7 +40,7 @@ export default function TopicsPage({ locale, data }: { locale: Locale; data: Top
               );
               return topic.slug ? (
                 <div key={topic.title} className="reveal" style={{ animationDelay: revealDelay(i * 0.05) }}>
-                  <Link href={isRTL ? `/${topic.slug}` : `/en/${topic.slug}`} style={{ ...cardStyle, textDecoration: 'none', cursor: 'pointer' }}>
+                  <Link href={isRTL ? `/${topic.slug}` : `/en/${topic.slug}`} prefetch={false} style={{ ...cardStyle, textDecoration: 'none', cursor: 'pointer' }}>
                     {card}
                   </Link>
                 </div>

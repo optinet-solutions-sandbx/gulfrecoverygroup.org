@@ -71,7 +71,7 @@ export default function Header({ locale }: { locale: Locale }) {
         }}>
           <div style={{ maxWidth: 1260, width: '100%', margin: '0 auto', paddingInline: 24, height: 70, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16 }}>
             {/* logo */}
-            <Link href={home} style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
+            <Link href={home} prefetch={false} style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
               <Emblem size={40} />
               <span style={{ fontFamily: font, fontWeight: 700, fontSize: isRTL ? 14 : 14.5, color: 'var(--navy)' }} className="logo-text">
                 {site.short[locale]}
@@ -80,9 +80,9 @@ export default function Header({ locale }: { locale: Locale }) {
 
             {/* desktop nav */}
             <nav className="desktop-nav" style={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-              <Link href={home} style={navLink(isActive('home'), font)}>{t.ui.home}</Link>
+              <Link href={home} prefetch={false} style={navLink(isActive('home'), font)}>{t.ui.home}</Link>
               {navItems.map(item => (
-                <Link key={item.id} href={item.href} style={navLink(isActive(item.id), font)}>
+                <Link key={item.id} href={item.href} prefetch={false} style={navLink(isActive(item.id), font)}>
                   {item.label}
                 </Link>
               ))}
@@ -90,7 +90,7 @@ export default function Header({ locale }: { locale: Locale }) {
 
             {/* right cluster */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
-              <Link href={altHref} className="lang-toggle" style={{
+              <Link href={altHref} prefetch={false} className="lang-toggle" style={{
                 fontFamily: font, fontSize: 12.5, fontWeight: 600, color: 'var(--navy-700)',
                 padding: '7px 11px', border: '1px solid var(--line)', borderRadius: 6, whiteSpace: 'nowrap',
               }}>
@@ -179,7 +179,7 @@ export default function Header({ locale }: { locale: Locale }) {
         </div>
         <nav style={{ flex: 1, overflowY: 'auto', padding: 14 }}>
           {[{ id: 'home', label: t.ui.home, href: home }, ...navItems].map((item) => (
-            <Link key={item.id} href={item.href} tabIndex={open ? 0 : -1} style={{
+            <Link key={item.id} href={item.href} prefetch={false} tabIndex={open ? 0 : -1} style={{
               display: 'block', padding: '13px 14px', marginBottom: 3, borderRadius: 8,
               fontFamily: font, fontSize: 15, fontWeight: isActive(item.id) ? 700 : 500,
               color: isActive(item.id) ? 'var(--official-700)' : 'var(--navy)',
@@ -197,7 +197,7 @@ export default function Header({ locale }: { locale: Locale }) {
           <a href={site.officialSite} target="_blank" rel="noopener noreferrer" tabIndex={open ? 0 : -1} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '12px', borderRadius: 7, border: '1.5px solid var(--navy)', color: 'var(--navy)', fontFamily: font, fontSize: 13.5, fontWeight: 600 }}>
             {t.ui.officialSite}<ExternalLink size={14} aria-hidden />
           </a>
-          <Link href={altHref} tabIndex={open ? 0 : -1} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '11px', borderRadius: 7, border: '1px solid var(--line)', color: 'var(--navy-700)', fontFamily: font, fontSize: 13, fontWeight: 600 }}>
+          <Link href={altHref} prefetch={false} tabIndex={open ? 0 : -1} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '11px', borderRadius: 7, border: '1px solid var(--line)', color: 'var(--navy-700)', fontFamily: font, fontSize: 13, fontWeight: 600 }}>
             {t.ui.langSwitch}
           </Link>
         </div>

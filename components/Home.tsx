@@ -169,14 +169,14 @@ export default function Home({ locale }: { locale: Locale }) {
               <span className="kicker"><FileBarChart2 size={15} aria-hidden />{isRTL ? 'محتوى توعوي' : 'Awareness content'}</span>
               <h2 style={{ margin: '12px 0 0', fontSize: 'clamp(1.6rem,3vw,2.2rem)' }}>{t.home.reportsTitle}</h2>
             </div>
-            <Link href={hrefFor('reports', locale)} style={{ display: 'inline-flex', alignItems: 'center', gap: 7, fontSize: 14, fontWeight: 600, color: 'var(--official-700)' }}>
+            <Link href={hrefFor('reports', locale)} prefetch={false} style={{ display: 'inline-flex', alignItems: 'center', gap: 7, fontSize: 14, fontWeight: 600, color: 'var(--official-700)' }}>
               {isRTL ? 'كل التقارير' : 'All reports'}<Fwd size={15} aria-hidden />
             </Link>
           </div>
           <div className="grid-3">
             {t.home.reports.map((r, i) => (
               <div key={r} className="reveal" style={{ animationDelay: revealDelay(i * 0.05) }}>
-                <Link href={hrefFor(i % 2 === 0 ? 'reports' : 'alerts', locale)} style={{ display: 'block', background: '#fff', border: '1px solid var(--line)', borderRadius: 12, padding: '24px', height: '100%' }}>
+                <Link href={hrefFor(i % 2 === 0 ? 'reports' : 'alerts', locale)} prefetch={false} style={{ display: 'block', background: '#fff', border: '1px solid var(--line)', borderRadius: 12, padding: '24px', height: '100%' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
                     <FileText size={18} style={{ color: 'var(--navy-500)' }} aria-hidden />
                     <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: isRTL ? 0 : '0.1em', textTransform: isRTL ? 'none' : 'uppercase', color: 'var(--slate-soft)' }}>{isRTL ? 'تقرير توعوي' : 'Awareness brief'}</span>

@@ -47,7 +47,7 @@ export default function Footer({ locale }: { locale: Locale }) {
       {/* main footer */}
       <div className="wrap" style={{ padding: '48px 24px 36px', display: 'grid', gridTemplateColumns: '1.4fr 1fr 1fr', gap: 40 }} >
         <div className="foot-brand">
-          <Link href={home} style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
+          <Link href={home} prefetch={false} style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
             <Emblem size={40} />
             <span style={{ fontWeight: 700, fontSize: 15, color: '#fff' }}>{site.short[locale]}</span>
           </Link>
@@ -91,7 +91,7 @@ function FooterCol({ title, ids, labelOf, locale }: {
       <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: 11 }}>
         {ids.map(id => (
           <li key={id}>
-            <Link href={hrefFor(id, locale)} style={{ fontSize: 13.5, color: '#aebccb' }}>{labelOf(id)}</Link>
+            <Link href={hrefFor(id, locale)} prefetch={false} style={{ fontSize: 13.5, color: '#aebccb' }}>{labelOf(id)}</Link>
           </li>
         ))}
       </ul>
