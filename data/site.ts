@@ -7,7 +7,7 @@
  * footer CTA), never with sitewide identical link blocks.
  */
 export const site = {
-  domain: 'https://grg-investor-protection.org', // TODO: confirm final .org domain
+  domain: 'https://gulfrecoverygroup.org',
 
   // The official commercial site this initiative points people to for a
   // professional case review. Single, soft, contextual reference.

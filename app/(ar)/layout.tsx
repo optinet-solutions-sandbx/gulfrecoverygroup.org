@@ -4,6 +4,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import JsonLd from '@/components/JsonLd';
 import { site } from '@/data/site';
+import { ibmPlexSansArabic, publicSans } from '@/lib/fonts';
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.domain),
@@ -23,8 +24,6 @@ export const metadata: Metadata = {
     alternateLocale: 'en_US',
     url: '/',
   },
-  // Preview build: keep out of search indexes until launch.
-  robots: { index: false, follow: false, nocache: true, googleBot: { index: false, follow: false } },
 };
 
 export const viewport: Viewport = {
@@ -35,7 +34,7 @@ export const viewport: Viewport = {
 
 export default function ArLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ar" dir="rtl" className="h-full">
+    <html lang="ar" dir="rtl" className={`h-full ${ibmPlexSansArabic.variable} ${publicSans.variable}`}>
       <body className="min-h-full flex flex-col antialiased">
         <JsonLd locale="ar" />
         <Header locale="ar" />

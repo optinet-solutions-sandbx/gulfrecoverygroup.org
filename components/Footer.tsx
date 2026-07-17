@@ -35,10 +35,10 @@ export default function Footer({ locale }: { locale: Locale }) {
           </p>
           <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
             <a href={site.officialSite} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '11px 18px', borderRadius: 6, border: '1.5px solid rgba(255,255,255,0.35)', color: '#fff', fontSize: 13.5, fontWeight: 600 }}>
-              {t.ui.officialSite}<ExternalLink size={14} />
+              {t.ui.officialSite}<ExternalLink size={14} aria-hidden />
             </a>
             <a href={site.whatsappHref} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '11px 18px', borderRadius: 6, background: 'var(--official)', color: '#fff', fontSize: 13.5, fontWeight: 600 }}>
-              <MessageCircle size={15} />{t.ui.whatsapp}
+              <MessageCircle size={15} aria-hidden />{t.ui.whatsapp}
             </a>
           </div>
         </div>
@@ -62,7 +62,7 @@ export default function Footer({ locale }: { locale: Locale }) {
       <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
         <div className="wrap" style={{ padding: '22px 24px' }}>
           <p style={{ margin: '0 0 14px', fontSize: 12.5, lineHeight: 1.7, color: '#8093a6' }}>{t.footer.disclaimer}</p>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, justifyContent: 'space-between', fontSize: 12, color: '#71859a' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, justifyContent: 'space-between', fontSize: 12, color: '#94a5b8' }}>
             <span>© {site.short[locale]}. {t.footer.rights}</span>
             <span>{site.name[locale]}</span>
           </div>
@@ -87,7 +87,7 @@ function FooterCol({ title, ids, labelOf, locale }: {
 }) {
   return (
     <div>
-      <h4 style={{ margin: '4px 0 16px', fontSize: 12, fontWeight: 700, letterSpacing: locale === 'ar' ? 0 : '0.1em', textTransform: locale === 'ar' ? 'none' : 'uppercase', color: '#6f8398' }}>{title}</h4>
+      <p style={{ margin: '4px 0 16px', fontSize: 12, fontWeight: 700, letterSpacing: locale === 'ar' ? 0 : '0.1em', textTransform: locale === 'ar' ? 'none' : 'uppercase', color: '#94a5b8' }}>{title}</p>
       <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: 11 }}>
         {ids.map(id => (
           <li key={id}>

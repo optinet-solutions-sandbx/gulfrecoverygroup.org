@@ -4,7 +4,6 @@ import { hrefFor } from '@/data/routes';
 
 /**
  * Build per-page metadata with correct canonical + hreflang alternates.
- * Preview builds stay out of the index (robots noindex) until launch.
  */
 export function buildMeta({
   locale, id, title, description,
@@ -28,7 +27,5 @@ export function buildMeta({
       title,
       description,
     },
-    // Preview build: keep the whole site out of search indexes until launch.
-    robots: { index: false, follow: false },
   };
 }

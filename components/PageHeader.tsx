@@ -17,7 +17,7 @@ export default function PageHeader({ locale, title, lead }: { locale: Locale; ti
       <div className="wrap" style={{ position: 'relative', padding: '46px 24px 52px' }}>
         <nav style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 12.5, color: '#9fb4c9', marginBottom: 18 }}>
           <Link href={home} style={{ color: '#9fb4c9' }}>{content[locale].ui.breadcrumbHome}</Link>
-          <Sep size={14} style={{ opacity: 0.6 }} />
+          <Sep size={14} style={{ opacity: 0.6 }} aria-hidden />
           <span style={{ color: '#fff' }}>{title}</span>
         </nav>
         <h1 style={{ margin: 0, color: '#fff', fontSize: 'clamp(1.8rem,3.6vw,2.6rem)', lineHeight: 1.25 }}>{title}</h1>

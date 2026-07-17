@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import { ExternalLink, MessageCircle, Send, CheckCircle2, Mail, ShieldCheck } from 'lucide-react';
 import type { Locale } from '@/lib/utils';
 import { fontFor } from '@/lib/utils';
@@ -33,13 +32,13 @@ export default function ContactPage({ locale }: { locale: Locale }) {
           {/* form */}
           <div style={{ background: '#fff', border: '1px solid var(--line)', borderRadius: 14, padding: 'clamp(24px,4vw,36px)' }}>
             {sent ? (
-              <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} style={{ textAlign: 'center', padding: '30px 0' }}>
-                <CheckCircle2 size={44} style={{ color: 'var(--official)', margin: '0 auto 16px' }} />
+              <div className="reveal" style={{ textAlign: 'center', padding: '30px 0' }}>
+                <CheckCircle2 size={44} style={{ color: 'var(--official)', margin: '0 auto 16px' }} aria-hidden />
                 <h2 style={{ margin: '0 0 8px', fontSize: 20 }}>{isRTL ? 'تم استلام رسالتك' : 'Your message was received'}</h2>
                 <p style={{ margin: 0, color: 'var(--slate)', fontSize: 14.5, lineHeight: 1.7 }}>
                   {isRTL ? 'شكرًا لتواصلك مع المبادرة، سنعود إليك عند الحاجة.' : 'Thank you for contacting the initiative. We will get back to you if needed.'}
                 </p>
-              </motion.div>
+              </div>
             ) : (
               <form onSubmit={(e) => { e.preventDefault(); setSent(true); }} noValidate>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }} className="cf-row">
@@ -52,7 +51,7 @@ export default function ContactPage({ locale }: { locale: Locale }) {
                 </div>
                 <div style={{ marginBottom: 20 }}>{label(c.fields.message)}<textarea required rows={5} style={{ ...inputStyle, resize: 'vertical' }} name="message" /></div>
                 <button type="submit" style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '13px 28px', borderRadius: 8, background: 'var(--navy)', color: '#fff', fontFamily: font, fontSize: 15, fontWeight: 600, border: 'none', cursor: 'pointer' }}>
-                  <Send size={16} />{c.send}
+                  <Send size={16} aria-hidden />{c.send}
                 </button>
               </form>
             )}
@@ -61,7 +60,7 @@ export default function ContactPage({ locale }: { locale: Locale }) {
           {/* side panel */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
             <div style={{ background: 'var(--navy)', color: '#fff', borderRadius: 14, padding: '28px 26px' }}>
-              <ShieldCheck size={24} style={{ color: '#7fe3b6', marginBottom: 14 }} />
+              <ShieldCheck size={24} style={{ color: '#7fe3b6', marginBottom: 14 }} aria-hidden />
               <p style={{ margin: 0, fontSize: 14.5, lineHeight: 1.75, color: '#cdd9e6' }}>
                 {isRTL
                   ? 'هذا نموذج للاستفسارات العامة حول المبادرة. للحالات التي تتطلب مراجعة متخصصة، تواصل مع الموقع الرسمي.'
@@ -69,14 +68,14 @@ export default function ContactPage({ locale }: { locale: Locale }) {
               </p>
             </div>
             <a href={`mailto:${site.email}`} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '18px 20px', background: '#fff', border: '1px solid var(--line)', borderRadius: 12 }}>
-              <Mail size={19} style={{ color: 'var(--official)' }} />
+              <Mail size={19} style={{ color: 'var(--official)' }} aria-hidden />
               <span style={{ fontSize: 14, color: 'var(--navy)', fontWeight: 600, wordBreak: 'break-all' }}>{site.email}</span>
             </a>
             <a href={site.officialSite} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '13px', borderRadius: 8, border: '1.5px solid var(--navy)', color: 'var(--navy)', fontSize: 14, fontWeight: 600 }}>
-              {t.ui.officialSite}<ExternalLink size={14} />
+              {t.ui.officialSite}<ExternalLink size={14} aria-hidden />
             </a>
             <a href={site.whatsappHref} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '13px', borderRadius: 8, background: 'var(--official)', color: '#fff', fontSize: 14, fontWeight: 600 }}>
-              <MessageCircle size={15} />{t.ui.whatsapp}
+              <MessageCircle size={15} aria-hidden />{t.ui.whatsapp}
             </a>
           </div>
         </div>

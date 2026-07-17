@@ -1,7 +1,4 @@
-'use client';
-
 import Link from 'next/link';
-import { motion } from 'framer-motion';
 import { FileText, ExternalLink, MessageCircle } from 'lucide-react';
 import type { Locale } from '@/lib/utils';
 import { fontFor } from '@/lib/utils';
@@ -10,11 +7,7 @@ import { content, type TopicsPageContent } from '@/data/content';
 import PageHeader from '@/components/PageHeader';
 
 // Reveal on mount so cards are never left invisible below the fold.
-const reveal = (delay = 0) => ({
-  initial: { opacity: 0, y: 18 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.45, ease: 'easeOut' as const, delay: Math.min(delay, 0.4) },
-});
+const revealDelay = (delay = 0) => `${Math.min(delay, 0.4)}s`;
 
 export default function TopicsPage({ locale, data }: { locale: Locale; data: TopicsPageContent }) {
   const isRTL = locale === 'ar';
@@ -37,7 +30,7 @@ export default function TopicsPage({ locale, data }: { locale: Locale; data: Top
               const card = (
                 <>
                   <div style={{ flexShrink: 0, width: 44, height: 44, borderRadius: 10, background: '#fff', border: '1px solid var(--line)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <FileText size={19} style={{ color: 'var(--official)' }} />
+                    <FileText size={19} style={{ color: 'var(--official)' }} aria-hidden />
                   </div>
                   <div>
                     <h2 style={{ margin: '2px 0 8px', fontSize: 17.5, color: 'var(--navy)' }}>{topic.title}</h2>
@@ -46,15 +39,15 @@ export default function TopicsPage({ locale, data }: { locale: Locale; data: Top
                 </>
               );
               return topic.slug ? (
-                <motion.div key={topic.title} {...reveal(i * 0.05)}>
+                <div key={topic.title} className="reveal" style={{ animationDelay: revealDelay(i * 0.05) }}>
                   <Link href={isRTL ? `/${topic.slug}` : `/en/${topic.slug}`} style={{ ...cardStyle, textDecoration: 'none', cursor: 'pointer' }}>
                     {card}
                   </Link>
-                </motion.div>
+                </div>
               ) : (
-                <motion.article key={topic.title} {...reveal(i * 0.05)} style={cardStyle}>
+                <article key={topic.title} className="reveal" style={{ ...cardStyle, animationDelay: revealDelay(i * 0.05) }}>
                   {card}
-                </motion.article>
+                </article>
               );
             })}
           </div>
@@ -70,10 +63,10 @@ export default function TopicsPage({ locale, data }: { locale: Locale; data: Top
           </div>
           <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
             <a href={site.officialSite} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '12px 20px', borderRadius: 8, border: '1.5px solid var(--navy)', color: 'var(--navy)', fontSize: 14, fontWeight: 600 }}>
-              {t.ui.officialSite}<ExternalLink size={14} />
+              {t.ui.officialSite}<ExternalLink size={14} aria-hidden />
             </a>
             <a href={site.whatsappHref} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '12px 20px', borderRadius: 8, background: 'var(--official)', color: '#fff', fontSize: 14, fontWeight: 600 }}>
-              <MessageCircle size={15} />{t.ui.whatsapp}
+              <MessageCircle size={15} aria-hidden />{t.ui.whatsapp}
             </a>
           </div>
         </div>

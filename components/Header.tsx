@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ExternalLink, MessageCircle, ShieldCheck } from 'lucide-react';
 import type { Locale } from '@/lib/utils';
 import { fontFor } from '@/lib/utils';
@@ -48,6 +47,7 @@ export default function Header({ locale }: { locale: Locale }) {
   useEffect(() => { setOpen(false); }, [pathname]);
 
   const isActive = (id: string) => (id === 'home' ? isHome : id === activeId);
+  const drawerOffscreen = isRTL ? 'translateX(-100%)' : 'translateX(100%)';
 
   return (
     <>
@@ -55,7 +55,7 @@ export default function Header({ locale }: { locale: Locale }) {
         {/* ── official ribbon ── */}
         <div style={{ background: 'var(--navy-deep)', color: '#cdd9e6' }}>
           <div className="wrap" style={{ height: 34, display: 'flex', alignItems: 'center', gap: 9, justifyContent: 'center' }}>
-            <ShieldCheck size={13} style={{ color: '#4fd39c', flexShrink: 0 }} />
+            <ShieldCheck size={13} style={{ color: '#4fd39c', flexShrink: 0 }} aria-hidden />
             <span className="ribbon-text" style={{ fontFamily: font, fontSize: 11.5, letterSpacing: isRTL ? 0 : '0.02em', textAlign: 'center', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
               {t.ui.ribbon}
             </span>
@@ -102,22 +102,29 @@ export default function Header({ locale }: { locale: Locale }) {
                 color: 'var(--navy)', padding: '9px 15px', border: '1.5px solid var(--navy)', borderRadius: 6, whiteSpace: 'nowrap',
               }}>
                 {isRTL ? t.ui.officialSite : 'Official site'}
-                <ExternalLink size={14} />
+                <ExternalLink size={14} aria-hidden />
               </a>
 
               <a href={site.whatsappHref} target="_blank" rel="noopener noreferrer" className="cta-wa" style={{
                 display: 'inline-flex', alignItems: 'center', gap: 7, fontFamily: font, fontSize: 13, fontWeight: 600,
                 color: '#fff', background: 'var(--official)', padding: '10px 15px', borderRadius: 6, whiteSpace: 'nowrap',
               }}>
-                <MessageCircle size={15} />
+                <MessageCircle size={15} aria-hidden />
                 <span className="wa-label">{isRTL ? t.ui.whatsapp : 'WhatsApp'}</span>
               </a>
 
-              <button onClick={() => setOpen(v => !v)} aria-label="menu" className="hamburger" style={{
-                display: 'none', alignItems: 'center', justifyContent: 'center', width: 40, height: 40,
-                borderRadius: 6, border: '1px solid var(--line)', background: '#fff', color: 'var(--navy)', cursor: 'pointer',
-              }}>
-                {open ? <X size={19} /> : <Menu size={19} />}
+              <button
+                onClick={() => setOpen(v => !v)}
+                aria-label={open ? (isRTL ? 'إغلاق القائمة' : 'Close menu') : (isRTL ? 'فتح القائمة' : 'Open menu')}
+                aria-expanded={open}
+                aria-controls="mobile-drawer"
+                type="button"
+                className="hamburger"
+                style={{
+                  display: 'none', alignItems: 'center', justifyContent: 'center', width: 40, height: 40,
+                  borderRadius: 6, border: '1px solid var(--line)', background: '#fff', color: 'var(--navy)', cursor: 'pointer',
+                }}>
+                {open ? <X size={19} aria-hidden /> : <Menu size={19} aria-hidden />}
               </button>
             </div>
           </div>
@@ -138,63 +145,63 @@ export default function Header({ locale }: { locale: Locale }) {
         @media (max-width: 720px) {
           .ribbon-text { font-size: 10.5px !important; }
         }
+        .mobile-overlay {
+          position: fixed; inset: 0; z-index: 60; background: rgba(10,32,54,0.45);
+          opacity: 0; pointer-events: none; transition: opacity 0.25s ease;
+        }
+        .mobile-overlay.open { opacity: 1; pointer-events: auto; }
+        .mobile-drawer {
+          transition: transform 0.3s cubic-bezier(0.32,0.72,0,1);
+        }
       `}</style>
 
       {/* mobile drawer */}
-      <AnimatePresence>
-        {open && (
-          <>
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              onClick={() => setOpen(false)}
-              style={{ position: 'fixed', inset: 0, zIndex: 60, background: 'rgba(10,32,54,0.45)' }} />
-            <motion.div
-              initial={{ x: isRTL ? '-100%' : '100%' }} animate={{ x: 0 }} exit={{ x: isRTL ? '-100%' : '100%' }}
-              transition={{ type: 'spring', stiffness: 340, damping: 34 }}
-              dir={isRTL ? 'rtl' : 'ltr'}
-              style={{
-                position: 'fixed', top: 0, bottom: 0, zIndex: 61, width: 300,
-                [isRTL ? 'left' : 'right']: 0, background: '#fff',
-                borderInlineStart: '1px solid var(--line)', display: 'flex', flexDirection: 'column',
-              }}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 20px', height: 66, borderBottom: '1px solid var(--line)' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                  <Emblem size={32} />
-                  <span style={{ fontFamily: font, fontWeight: 700, fontSize: 14, color: 'var(--navy)' }}>{site.short[locale]}</span>
-                </div>
-                <button onClick={() => setOpen(false)} style={{ background: 'none', border: 'none', color: 'var(--slate)', cursor: 'pointer' }}>
-                  <X size={20} />
-                </button>
-              </div>
-              <nav style={{ flex: 1, overflowY: 'auto', padding: 14 }}>
-                {[{ id: 'home', label: t.ui.home, href: home }, ...navItems].map((item, i) => (
-                  <motion.div key={item.id} initial={{ opacity: 0, x: isRTL ? -12 : 12 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.04 }}>
-                    <Link href={item.href} style={{
-                      display: 'block', padding: '13px 14px', marginBottom: 3, borderRadius: 8,
-                      fontFamily: font, fontSize: 15, fontWeight: isActive(item.id) ? 700 : 500,
-                      color: isActive(item.id) ? 'var(--official-700)' : 'var(--navy)',
-                      background: isActive(item.id) ? 'var(--official-50)' : 'transparent',
-                      textAlign: isRTL ? 'right' : 'left',
-                    }}>
-                      {item.label}
-                    </Link>
-                  </motion.div>
-                ))}
-              </nav>
-              <div style={{ padding: '16px 16px 24px', borderTop: '1px solid var(--line)', display: 'flex', flexDirection: 'column', gap: 10 }}>
-                <a href={site.whatsappHref} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '13px', borderRadius: 7, background: 'var(--official)', color: '#fff', fontFamily: font, fontSize: 14, fontWeight: 600 }}>
-                  <MessageCircle size={16} />{t.ui.whatsapp}
-                </a>
-                <a href={site.officialSite} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '12px', borderRadius: 7, border: '1.5px solid var(--navy)', color: 'var(--navy)', fontFamily: font, fontSize: 13.5, fontWeight: 600 }}>
-                  {t.ui.officialSite}<ExternalLink size={14} />
-                </a>
-                <Link href={altHref} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '11px', borderRadius: 7, border: '1px solid var(--line)', color: 'var(--navy-700)', fontFamily: font, fontSize: 13, fontWeight: 600 }}>
-                  {t.ui.langSwitch}
-                </Link>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+      <div className={`mobile-overlay${open ? ' open' : ''}`} onClick={() => setOpen(false)} aria-hidden="true" />
+      <div
+        id="mobile-drawer"
+        className="mobile-drawer"
+        dir={isRTL ? 'rtl' : 'ltr'}
+        aria-hidden={!open}
+        style={{
+          position: 'fixed', top: 0, bottom: 0, zIndex: 61, width: 300,
+          [isRTL ? 'left' : 'right']: 0, background: '#fff',
+          borderInlineStart: '1px solid var(--line)', display: 'flex', flexDirection: 'column',
+          transform: open ? 'translateX(0)' : drawerOffscreen,
+        }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 20px', height: 66, borderBottom: '1px solid var(--line)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <Emblem size={32} />
+            <span style={{ fontFamily: font, fontWeight: 700, fontSize: 14, color: 'var(--navy)' }}>{site.short[locale]}</span>
+          </div>
+          <button onClick={() => setOpen(false)} type="button" aria-label={isRTL ? 'إغلاق القائمة' : 'Close menu'} tabIndex={open ? 0 : -1} style={{ background: 'none', border: 'none', color: 'var(--slate)', cursor: 'pointer' }}>
+            <X size={20} aria-hidden />
+          </button>
+        </div>
+        <nav style={{ flex: 1, overflowY: 'auto', padding: 14 }}>
+          {[{ id: 'home', label: t.ui.home, href: home }, ...navItems].map((item) => (
+            <Link key={item.id} href={item.href} tabIndex={open ? 0 : -1} style={{
+              display: 'block', padding: '13px 14px', marginBottom: 3, borderRadius: 8,
+              fontFamily: font, fontSize: 15, fontWeight: isActive(item.id) ? 700 : 500,
+              color: isActive(item.id) ? 'var(--official-700)' : 'var(--navy)',
+              background: isActive(item.id) ? 'var(--official-50)' : 'transparent',
+              textAlign: isRTL ? 'right' : 'left',
+            }}>
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+        <div style={{ padding: '16px 16px 24px', borderTop: '1px solid var(--line)', display: 'flex', flexDirection: 'column', gap: 10 }}>
+          <a href={site.whatsappHref} target="_blank" rel="noopener noreferrer" tabIndex={open ? 0 : -1} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '13px', borderRadius: 7, background: 'var(--official)', color: '#fff', fontFamily: font, fontSize: 14, fontWeight: 600 }}>
+            <MessageCircle size={16} aria-hidden />{t.ui.whatsapp}
+          </a>
+          <a href={site.officialSite} target="_blank" rel="noopener noreferrer" tabIndex={open ? 0 : -1} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '12px', borderRadius: 7, border: '1.5px solid var(--navy)', color: 'var(--navy)', fontFamily: font, fontSize: 13.5, fontWeight: 600 }}>
+            {t.ui.officialSite}<ExternalLink size={14} aria-hidden />
+          </a>
+          <Link href={altHref} tabIndex={open ? 0 : -1} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '11px', borderRadius: 7, border: '1px solid var(--line)', color: 'var(--navy-700)', fontFamily: font, fontSize: 13, fontWeight: 600 }}>
+            {t.ui.langSwitch}
+          </Link>
+        </div>
+      </div>
     </>
   );
 }

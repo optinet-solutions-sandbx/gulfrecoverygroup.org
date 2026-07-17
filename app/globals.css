@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
 @import "tailwindcss";
 
 /* ══════════════════════════════════════════════════════════════════
@@ -31,10 +30,7 @@
   --color-line-soft:   #e8edf3;
   --color-ink:         #14202b;
   --color-slate:       #51637a;
-  --color-slate-soft:  #6f8093;
-
-  --font-plex-ar:      'IBM Plex Sans Arabic', sans-serif;
-  --font-public:       'Public Sans', system-ui, sans-serif;
+  --color-slate-soft:  #5c6f82;
 }
 
 :root {
@@ -55,9 +51,7 @@
   --line-soft:   #e8edf3;
   --ink:         #14202b;
   --slate:       #51637a;
-  --slate-soft:  #6f8093;
-  --font-ar:     'IBM Plex Sans Arabic', sans-serif;
-  --font-en:     'Public Sans', system-ui, sans-serif;
+  --slate-soft:  #5c6f82;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -110,6 +104,13 @@ h1, h2, h3, h4 { color: var(--navy); font-weight: 700; letter-spacing: -0.01em; 
   .article-layout.has-toc { grid-template-columns: minmax(0, 1fr) 260px; }
   .article-toc { order: 0; margin-top: 0; position: sticky; top: 24px; }
 }
+
+/* mount-in reveal, replaces the old per-component framer-motion fade/rise */
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.reveal { animation: reveal-up 0.5s ease-out both; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
