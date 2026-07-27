@@ -24,6 +24,9 @@ export const metadata: Metadata = {
     alternateLocale: 'en_US',
     url: '/',
   },
+  verification: {
+    google: 'dfvtuvq3owRV4z0b7PaZexjjrzLEwSFVrSH7YIrnTqg',
+  },
 };
 
 export const viewport: Viewport = {
@@ -35,6 +38,9 @@ export const viewport: Viewport = {
 export default function ArLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ar" dir="rtl" className={`h-full ${ibmPlexSansArabic.variable} ${publicSans.variable}`}>
+      <head>
+        <script src="https://analytics.ahrefs.com/analytics.js" data-key="q+aaZ1lBmEUI/0EXL23y5A" async />
+      </head>
       <body className="min-h-full flex flex-col antialiased">
         <JsonLd locale="ar" />
         <Header locale="ar" />

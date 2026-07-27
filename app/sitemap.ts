@@ -4,6 +4,8 @@ import { ROUTES, hrefFor } from '@/data/routes';
 import { articles } from '@/data/articles';
 import { articlesEn } from '@/data/articles.en';
 
+export const dynamic = 'force-static';
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = [
     { url: `${site.domain}/`, changeFrequency: 'monthly', priority: 1 },

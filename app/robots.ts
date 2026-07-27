@@ -1,6 +1,8 @@
 import type { MetadataRoute } from 'next';
 import { site } from '@/data/site';
 
+export const dynamic = 'force-static';
+
 // Launched: allow crawling of the whole public site and point crawlers at the sitemap.
 // (Any individual page can still opt out via its own `robots` metadata if ever needed.)
 export default function robots(): MetadataRoute.Robots {
