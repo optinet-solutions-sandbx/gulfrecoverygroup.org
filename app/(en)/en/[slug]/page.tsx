@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { ROUTES, routeBySlug } from '@/data/routes';
 import { articlesEn, articleBySlugEn } from '@/data/articles.en';
 import { buildMeta } from '@/lib/seo';
+import { articleLanguages } from '@/lib/articles-i18n';
 import RouteRenderer, { metaFor } from '@/components/RouteRenderer';
 import ArticlePage from '@/components/templates/ArticlePage';
 
@@ -16,11 +17,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const article = articleBySlugEn(slug);
   if (article) {
+    const path = `/en/${article.slug}`;
     return {
       title: article.title,
       description: article.description,
-      alternates: { canonical: `/en/${article.slug}` },
-      robots: { index: false, follow: false },
+      alternates: { canonical: path, languages: articleLanguages(article.slug, 'en') },
+      openGraph: { type: 'article', locale: 'en_US', url: path, title: article.title, description: article.description },
     };
   }
   const route = routeBySlug(slug, 'en');
