@@ -3,7 +3,12 @@ import type { Locale } from '@/lib/utils';
 import { fontFor } from '@/lib/utils';
 import { content } from '@/data/content';
 import type { Article, ArticleBlock } from '@/data/articles';
+import { ARTICLE_SECTION } from '@/data/articles';
+import { ARTICLE_SECTION_EN } from '@/data/articles.en';
+import { ROUTES, hrefFor, norm } from '@/data/routes';
 import PageHeader from '@/components/PageHeader';
+import JsonLdScript from '@/components/JsonLdScript';
+import { articleSchema, breadcrumbSchema, abs } from '@/lib/schema';
 
 /* Recurring rhetorical closers every guide uses — surfaced as callout cards instead of plain text. */
 const NOTE_MARKERS = ['تذكر دائم', 'معلومة مهمة', 'نصيحة مهمة', 'Always remember', 'Important note', 'Important tip'];
@@ -174,6 +179,19 @@ export default function ArticlePage({ article, locale = 'ar' }: { article: Artic
   const introGroups = groupBlocks(article.intro);
   const bodyGroups = groupBlocks(article.blocks);
 
+  // Per-page structured data: Article + Home > Section > Article breadcrumb.
+  const path = isRTL ? `/${article.slug}` : `/en/${article.slug}`;
+  const url = abs(path);
+  const sectionId = (isRTL ? ARTICLE_SECTION : ARTICLE_SECTION_EN)[norm(article.slug)];
+  const sectionRoute = ROUTES.find(r => r.id === sectionId);
+  const crumbs = [{ name: isRTL ? 'الرئيسية' : 'Home', url: abs(hrefFor('home', locale)) }];
+  if (sectionRoute?.navLabel) crumbs.push({ name: sectionRoute.navLabel[locale], url: abs(hrefFor(sectionRoute.id, locale)) });
+  crumbs.push({ name: article.title, url });
+  const jsonLd = [
+    articleSchema({ locale, title: article.title, description: article.description, url }),
+    breadcrumbSchema(crumbs),
+  ];
+
   const renderGroups = (groups: Group[]) => groups.map((g, gi) => {
     if (g.kind === 'callout') {
       return <Callout key={gi} type={g.calloutType} heading={g.heading} blocks={g.blocks} id={nextH2Id()} />;
@@ -187,6 +205,7 @@ export default function ArticlePage({ article, locale = 'ar' }: { article: Artic
 
   return (
     <div dir={isRTL ? 'rtl' : 'ltr'} style={{ fontFamily: font }}>
+      <JsonLdScript data={jsonLd} />
       <PageHeader locale={locale} title={article.title} lead={article.description} />
 
       <div className="wrap" style={{ padding: '22px 24px 0' }}>
