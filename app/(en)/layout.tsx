@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     template: `%s | ${site.short.en}`,
   },
   description: site.tagline.en,
+  robots: { index: true, follow: true },
   alternates: {
     canonical: '/en',
     languages: { ar: '/', en: '/en', 'x-default': '/' },
