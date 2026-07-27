@@ -5,7 +5,13 @@ import { site } from '@/data/site';
 // (Any individual page can still opt out via its own `robots` metadata if ever needed.)
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: { userAgent: '*', allow: '/' },
+    rules: {
+      userAgent: '*',
+      allow: '/',
+      // Cloudflare injects /cdn-cgi/l/email-protection links (email obfuscation) that 404 and
+      // waste crawl budget — keep crawlers off Cloudflare's internal paths.
+      disallow: '/cdn-cgi/',
+    },
     sitemap: `${site.domain}/sitemap.xml`,
     host: site.domain,
   };
