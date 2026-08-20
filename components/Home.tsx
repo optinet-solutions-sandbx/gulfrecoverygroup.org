@@ -203,7 +203,7 @@ export default function Home({ locale }: { locale: Locale }) {
               <a href={site.officialSite} target="_blank" rel="noopener noreferrer" style={{ ...btnPrimary(font), background: '#fff', color: 'var(--navy)' }}>
                 {t.ui.officialSite}<ExternalLink size={15} aria-hidden />
               </a>
-              <a href={site.whatsappHref} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '13px 24px', borderRadius: 8, background: 'var(--official)', color: '#fff', fontFamily: font, fontSize: 15, fontWeight: 600 }}>
+              <a href={site.whatsappHref[locale]} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '13px 24px', borderRadius: 8, background: 'var(--official)', color: '#fff', fontFamily: font, fontSize: 15, fontWeight: 600 }}>
                 <MessageCircle size={16} aria-hidden />{t.ui.whatsapp}
               </a>
             </div>

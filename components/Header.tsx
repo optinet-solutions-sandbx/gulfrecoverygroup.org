@@ -29,7 +29,7 @@ export default function Header({ locale }: { locale: Locale }) {
     return { id, label: r.navLabel![locale], href: hrefFor(id, locale) };
   });
 
-  const curSlug = isRTL ? pathname.replace(/^\//, '') : pathname.replace(/^\/en\/?/, '');
+  const curSlug = (isRTL ? pathname.replace(/^\//, '') : pathname.replace(/^\/en\/?/, '')).replace(/\/$/, '');
   const altHref = altLocaleHref(decodeURIComponent(curSlug), locale);
 
   // Match by route id, not by href string — pathname vs. hrefFor() can disagree on
@@ -105,7 +105,7 @@ export default function Header({ locale }: { locale: Locale }) {
                 <ExternalLink size={14} aria-hidden />
               </a>
 
-              <a href={site.whatsappHref} target="_blank" rel="noopener noreferrer" className="cta-wa" style={{
+              <a href={site.whatsappHref[locale]} target="_blank" rel="noopener noreferrer" className="cta-wa" style={{
                 display: 'inline-flex', alignItems: 'center', gap: 7, fontFamily: font, fontSize: 13, fontWeight: 600,
                 color: '#fff', background: 'var(--official)', padding: '10px 15px', borderRadius: 6, whiteSpace: 'nowrap',
               }}>
@@ -132,7 +132,7 @@ export default function Header({ locale }: { locale: Locale }) {
       </header>
 
       <style>{`
-        @media (max-width: 1260px) {
+        @media (max-width: 1480px) {
           .desktop-nav  { display: none !important; }
           .hamburger    { display: flex !important; }
           .cta-official { display: none !important; }
@@ -191,7 +191,7 @@ export default function Header({ locale }: { locale: Locale }) {
           ))}
         </nav>
         <div style={{ padding: '16px 16px 24px', borderTop: '1px solid var(--line)', display: 'flex', flexDirection: 'column', gap: 10 }}>
-          <a href={site.whatsappHref} target="_blank" rel="noopener noreferrer" tabIndex={open ? 0 : -1} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '13px', borderRadius: 7, background: 'var(--official)', color: '#fff', fontFamily: font, fontSize: 14, fontWeight: 600 }}>
+          <a href={site.whatsappHref[locale]} target="_blank" rel="noopener noreferrer" tabIndex={open ? 0 : -1} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '13px', borderRadius: 7, background: 'var(--official)', color: '#fff', fontFamily: font, fontSize: 14, fontWeight: 600 }}>
             <MessageCircle size={16} aria-hidden />{t.ui.whatsapp}
           </a>
           <a href={site.officialSite} target="_blank" rel="noopener noreferrer" tabIndex={open ? 0 : -1} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '12px', borderRadius: 7, border: '1.5px solid var(--navy)', color: 'var(--navy)', fontFamily: font, fontSize: 13.5, fontWeight: 600 }}>

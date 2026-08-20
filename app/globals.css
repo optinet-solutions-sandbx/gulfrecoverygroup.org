@@ -62,6 +62,7 @@ body {
   color: var(--ink);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  overflow-x: hidden;
 }
 
 :lang(ar) { font-family: var(--font-ar); }

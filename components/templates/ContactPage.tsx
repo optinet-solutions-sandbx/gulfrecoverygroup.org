@@ -14,6 +14,7 @@ export default function ContactPage({ locale }: { locale: Locale }) {
   const c = content[locale].contact;
   const t = content[locale];
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
 
   const label = (s: string) => (
     <span style={{ display: 'block', marginBottom: 7, fontSize: 13, fontWeight: 600, color: 'var(--navy)' }}>{s}</span>
@@ -40,7 +41,55 @@ export default function ContactPage({ locale }: { locale: Locale }) {
                 </p>
               </div>
             ) : (
-              <form onSubmit={(e) => { e.preventDefault(); setSent(true); }} noValidate>
+              <form
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  const form = e.currentTarget;
+                  const data = new FormData(form);
+                  const name = String(data.get('name') || '');
+                  const email = String(data.get('email') || '');
+                  const phone = String(data.get('phone') || '');
+                  const subject = String(data.get('subject') || '') || (isRTL ? 'رسالة من نموذج التواصل' : 'Contact form message');
+                  const message = String(data.get('message') || '');
+
+                  if (site.formEndpoint) {
+                    setSending(true);
+                    try {
+                      const res = await fetch(site.formEndpoint, {
+                        method: 'POST',
+                        headers: { Accept: 'application/json' },
+                        body: data,
+                      });
+                      if (!res.ok) throw new Error('request failed');
+                      alert(isRTL
+                        ? `تم إرسال رسالتك إلى ${site.email}`
+                        : `Your message was sent to ${site.email}`);
+                      setSent(true);
+                    } catch {
+                      alert(isRTL
+                        ? 'تعذر إرسال الرسالة، يرجى المحاولة عبر البريد الإلكتروني مباشرة.'
+                        : 'Could not send the message, please try emailing us directly.');
+                    } finally {
+                      setSending(false);
+                    }
+                    return;
+                  }
+
+                  const body = [
+                    `${isRTL ? 'الاسم' : 'Name'}: ${name}`,
+                    `${isRTL ? 'البريد الإلكتروني' : 'Email'}: ${email}`,
+                    `${isRTL ? 'الهاتف' : 'Phone'}: ${phone}`,
+                    '',
+                    message,
+                  ].join('\n');
+                  window.location.href = `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                  alert(isRTL
+                    ? `سيتم فتح برنامج البريد لإرسال رسالتك إلى ${site.email}`
+                    : `Your email app will open to send your message to ${site.email}`);
+                  setSent(true);
+                }}
+                noValidate
+              >
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }} className="cf-row">
                   <div>{label(c.fields.name)}<input required style={inputStyle} type="text" name="name" /></div>
                   <div>{label(c.fields.email)}<input required style={inputStyle} type="email" name="email" /></div>
@@ -50,7 +99,7 @@ export default function ContactPage({ locale }: { locale: Locale }) {
                   <div>{label(c.fields.subject)}<input style={inputStyle} type="text" name="subject" /></div>
                 </div>
                 <div style={{ marginBottom: 20 }}>{label(c.fields.message)}<textarea required rows={5} style={{ ...inputStyle, resize: 'vertical' }} name="message" /></div>
-                <button type="submit" style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '13px 28px', borderRadius: 8, background: 'var(--navy)', color: '#fff', fontFamily: font, fontSize: 15, fontWeight: 600, border: 'none', cursor: 'pointer' }}>
+                <button type="submit" disabled={sending} style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '13px 28px', borderRadius: 8, background: 'var(--navy)', color: '#fff', fontFamily: font, fontSize: 15, fontWeight: 600, border: 'none', cursor: sending ? 'default' : 'pointer', opacity: sending ? 0.7 : 1 }}>
                   <Send size={16} aria-hidden />{c.send}
                 </button>
               </form>
@@ -74,7 +123,7 @@ export default function ContactPage({ locale }: { locale: Locale }) {
             <a href={site.officialSite} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '13px', borderRadius: 8, border: '1.5px solid var(--navy)', color: 'var(--navy)', fontSize: 14, fontWeight: 600 }}>
               {t.ui.officialSite}<ExternalLink size={14} aria-hidden />
             </a>
-            <a href={site.whatsappHref} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '13px', borderRadius: 8, background: 'var(--official)', color: '#fff', fontSize: 14, fontWeight: 600 }}>
+            <a href={site.whatsappHref[locale]} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '13px', borderRadius: 8, background: 'var(--official)', color: '#fff', fontSize: 14, fontWeight: 600 }}>
               <MessageCircle size={15} aria-hidden />{t.ui.whatsapp}
             </a>
           </div>

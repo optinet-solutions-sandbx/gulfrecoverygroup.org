@@ -1,7 +1,8 @@
 /**
- * Institutional emblem for the Arab Center for Fund Recovery: a protection
- * shield with a circular return arrow, signalling "getting your money back"
- * rather than plain checkmark approval (navy shield, official-green arrow).
+ * Institutional emblem for the Arab Center for Financial Consulting: a
+ * protection shield with a circular refresh arrow, signalling ongoing
+ * review/guidance rather than plain checkmark approval (navy shield,
+ * official-green arrow).
  */
 export default function Emblem({ size = 40 }: { size?: number }) {
   return (

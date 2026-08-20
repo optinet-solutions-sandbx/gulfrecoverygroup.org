@@ -8,7 +8,7 @@ export default function JsonLdScript({ data }: { data: object | object[] }) {
           key={i}
           type="application/ld+json"
           // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(d) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(d).replace(/</g, '\\u003c') }}
         />
       ))}
     </>

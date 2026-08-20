@@ -37,7 +37,7 @@ export default function Footer({ locale }: { locale: Locale }) {
             <a href={site.officialSite} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '11px 18px', borderRadius: 6, border: '1.5px solid rgba(255,255,255,0.35)', color: '#fff', fontSize: 13.5, fontWeight: 600 }}>
               {t.ui.officialSite}<ExternalLink size={14} aria-hidden />
             </a>
-            <a href={site.whatsappHref} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '11px 18px', borderRadius: 6, background: 'var(--official)', color: '#fff', fontSize: 13.5, fontWeight: 600 }}>
+            <a href={site.whatsappHref[locale]} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '11px 18px', borderRadius: 6, background: 'var(--official)', color: '#fff', fontSize: 13.5, fontWeight: 600 }}>
               <MessageCircle size={15} aria-hidden />{t.ui.whatsapp}
             </a>
           </div>
@@ -61,11 +61,13 @@ export default function Footer({ locale }: { locale: Locale }) {
       {/* disclaimer + rights */}
       <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
         <div className="wrap" style={{ padding: '22px 24px' }}>
+          <p style={{ margin: '0 0 10px', fontSize: 12.5, lineHeight: 1.7, color: '#8093a6' }}>{t.footer.serviceDisclaimer}</p>
           <p style={{ margin: '0 0 14px', fontSize: 12.5, lineHeight: 1.7, color: '#8093a6' }}>{t.footer.disclaimer}</p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, justifyContent: 'space-between', fontSize: 12, color: '#94a5b8' }}>
             <span>© {site.short[locale]}. {t.footer.rights}</span>
             <span>{site.name[locale]}</span>
           </div>
+          <p style={{ margin: '14px 0 0', fontSize: 11.5, lineHeight: 1.6, color: '#6f8093' }}>{t.footer.companyInfo}</p>
         </div>
       </div>
 

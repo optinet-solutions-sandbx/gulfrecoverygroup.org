@@ -73,6 +73,8 @@ export interface Dict {
     blurb: string;
     linksHeading: string;
     disclaimer: string;
+    serviceDisclaimer: string;
+    companyInfo: string;
     ctaLine: string;
     rights: string;
   };
@@ -94,7 +96,7 @@ const ar: Dict = {
   home: {
     heroTitle: 'معًا لرفع الوعي وحماية المستثمرين من الاحتيال المالي',
     heroLead:
-      'المركز العربي لاسترجاع الأموال يهدف إلى نشر الوعي، وتوفير معلومات توعوية تساعد الأفراد على التعرف على أساليب الاحتيال المالي والاستثماري، وفهم المخاطر قبل اتخاذ أي قرار مالي.',
+      'المركز العربي للاستشارات المالية يهدف إلى نشر الوعي، وتوفير معلومات توعوية تساعد الأفراد على التعرف على أساليب الاحتيال المالي والاستثماري، وفهم المخاطر قبل اتخاذ أي قرار مالي.',
     aboutTitle: 'عن المبادرة',
     aboutBody:
       'تم إطلاق هذه المبادرة بهدف تعزيز الوعي المالي في العالم العربي، وتسليط الضوء على أساليب الاحتيال المنتشرة في مجالات التداول، الاستثمار، العملات الرقمية، والتحويلات المالية. تركّز المبادرة على التوعية، الوقاية، ونشر المعرفة بطريقة واضحة ومباشرة.',
@@ -145,7 +147,7 @@ const ar: Dict = {
   about: {
     title: 'عن المبادرة',
     body:
-      'المركز العربي لاسترجاع الأموال هو مبادرة توعوية تهدف إلى تعزيز الوعي العام حول مخاطر الاحتيال المالي والاستثماري، وتقديم معلومات تساعد الأفراد على فهم الأساليب الشائعة التي يستخدمها المحتالون.',
+      'المركز العربي للاستشارات المالية هو مبادرة توعوية تهدف إلى تعزيز الوعي العام حول مخاطر الاحتيال المالي والاستثماري، وتقديم معلومات تساعد الأفراد على فهم الأساليب الشائعة التي يستخدمها المحتالون.',
     mission: 'نشر الوعي المالي والاستثماري وحماية الأفراد من الوقوع في الاحتيال.',
     vision: 'أن تكون المبادرة مرجعًا عربيًا موثوقًا في مجال التوعية بمخاطر الاحتيال المالي.',
     values: ['المعرفة', 'الشفافية', 'المسؤولية', 'الوقاية', 'حماية الجمهور'],
@@ -230,6 +232,9 @@ const ar: Dict = {
     linksHeading: 'روابط المبادرة',
     disclaimer:
       'المحتوى المنشور في هذا الموقع لأغراض التوعية والمعرفة العامة فقط، ولا يُعد استشارة قانونية أو مالية أو استثمارية.',
+    serviceDisclaimer:
+      'تقدم GRG Management Consultancy F.Z.E خدمات الاستشارات الإدارية وتقييم الحالات ودعم إعداد وتنظيم المستندات. لا تقدم GRG خدمات التمثيل القانوني أو خدمات الاستثمار أو الاستشارات المالية أو تحصيل الديون أو الخدمات المصرفية. كما أن GRG لا تحتفظ بأموال العملاء المستردة ولا تستلمها أو تحولها أو تديرها، ولا تضمن استرداد الأموال أو تحقيق أي نتيجة مالية محددة.',
+    companyInfo: 'GRG Management Consultancy F.Z.E · رخصة تجارية رقم 56354 · منطقة عجمان الحرة، دولة الإمارات العربية المتحدة',
     ctaLine: 'للحالات التي تحتاج إلى تقييم مهني، يرجى زيارة الموقع الرسمي لمجموعة الخليج لاسترجاع الأموال.',
     rights: 'جميع الحقوق محفوظة.',
   },
@@ -251,7 +256,7 @@ const en: Dict = {
   home: {
     heroTitle: 'Together, raising awareness and protecting investors from financial fraud',
     heroLead:
-      'The Arab Center for Fund Recovery works to spread awareness and to provide educational information that helps individuals recognise financial and investment fraud tactics, and understand the risks before making any financial decision.',
+      'The Arab Center for Financial Consulting works to spread awareness and to provide educational information that helps individuals recognise financial and investment fraud tactics, and understand the risks before making any financial decision.',
     aboutTitle: 'About the Initiative',
     aboutBody:
       'This initiative was launched to strengthen financial literacy across the Arab world, and to shed light on the fraud tactics common in trading, investment, digital currencies, and money transfers. It focuses on awareness, prevention, and sharing knowledge in a clear and direct way.',
@@ -302,7 +307,7 @@ const en: Dict = {
   about: {
     title: 'About the Initiative',
     body:
-      'The Arab Center for Fund Recovery is an awareness initiative that works to strengthen public understanding of the risks of financial and investment fraud, and to provide information that helps individuals recognise the common methods used by fraudsters.',
+      'The Arab Center for Financial Consulting is an awareness initiative that works to strengthen public understanding of the risks of financial and investment fraud, and to provide information that helps individuals recognise the common methods used by fraudsters.',
     mission: 'To spread financial and investment awareness and protect individuals from falling victim to fraud.',
     vision: 'To become a trusted Arabic reference in awareness of the risks of financial fraud.',
     values: ['Knowledge', 'Transparency', 'Responsibility', 'Prevention', 'Protecting the public'],
@@ -387,6 +392,9 @@ const en: Dict = {
     linksHeading: 'Initiative links',
     disclaimer:
       'The content published on this site is for awareness and general knowledge purposes only, and does not constitute legal, financial, or investment advice.',
+    serviceDisclaimer:
+      'GRG Management Consultancy F.Z.E provides management consultancy, case evaluation and documentation support services. GRG does not provide legal representation, investment services, financial advisory services, debt collection services, or banking services. GRG does not hold, receive, transfer or manage recovered client funds and does not guarantee recovery or any specific financial outcome.',
+    companyInfo: 'GRG Management Consultancy F.Z.E · Trade License No. 56354 · Ajman Free Zone, United Arab Emirates',
     ctaLine: 'For cases that require a professional assessment, please visit the official Gulf Recovery Group site.',
     rights: 'All rights reserved.',
   },
