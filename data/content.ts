@@ -73,7 +73,6 @@ export interface Dict {
     blurb: string;
     linksHeading: string;
     disclaimer: string;
-    serviceDisclaimer: string;
     companyInfo: string;
     ctaLine: string;
     rights: string;
@@ -232,8 +231,6 @@ const ar: Dict = {
     linksHeading: 'روابط المبادرة',
     disclaimer:
       'المحتوى المنشور في هذا الموقع لأغراض التوعية والمعرفة العامة فقط، ولا يُعد استشارة قانونية أو مالية أو استثمارية.',
-    serviceDisclaimer:
-      'تقدم GRG Management Consultancy F.Z.E خدمات الاستشارات الإدارية وتقييم الحالات ودعم إعداد وتنظيم المستندات. لا تقدم GRG خدمات التمثيل القانوني أو خدمات الاستثمار أو الاستشارات المالية أو تحصيل الديون أو الخدمات المصرفية. كما أن GRG لا تحتفظ بأموال العملاء المستردة ولا تستلمها أو تحولها أو تديرها، ولا تضمن استرداد الأموال أو تحقيق أي نتيجة مالية محددة.',
     companyInfo: 'GRG Management Consultancy F.Z.E · رخصة تجارية رقم 56354 · منطقة عجمان الحرة، دولة الإمارات العربية المتحدة',
     ctaLine: 'للحالات التي تحتاج إلى تقييم مهني، يرجى زيارة الموقع الرسمي لمجموعة الخليج لاسترجاع الأموال.',
     rights: 'جميع الحقوق محفوظة.',
@@ -392,8 +389,6 @@ const en: Dict = {
     linksHeading: 'Initiative links',
     disclaimer:
       'The content published on this site is for awareness and general knowledge purposes only, and does not constitute legal, financial, or investment advice.',
-    serviceDisclaimer:
-      'GRG Management Consultancy F.Z.E provides management consultancy, case evaluation and documentation support services. GRG does not provide legal representation, investment services, financial advisory services, debt collection services, or banking services. GRG does not hold, receive, transfer or manage recovered client funds and does not guarantee recovery or any specific financial outcome.',
     companyInfo: 'GRG Management Consultancy F.Z.E · Trade License No. 56354 · Ajman Free Zone, United Arab Emirates',
     ctaLine: 'For cases that require a professional assessment, please visit the official Gulf Recovery Group site.',
     rights: 'All rights reserved.',

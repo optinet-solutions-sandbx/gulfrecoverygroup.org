@@ -61,7 +61,6 @@ export default function Footer({ locale }: { locale: Locale }) {
       {/* disclaimer + rights */}
       <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
         <div className="wrap" style={{ padding: '22px 24px' }}>
-          <p style={{ margin: '0 0 10px', fontSize: 12.5, lineHeight: 1.7, color: '#8093a6' }}>{t.footer.serviceDisclaimer}</p>
           <p style={{ margin: '0 0 14px', fontSize: 12.5, lineHeight: 1.7, color: '#8093a6' }}>{t.footer.disclaimer}</p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, justifyContent: 'space-between', fontSize: 12, color: '#94a5b8' }}>
             <span>© {site.short[locale]}. {t.footer.rights}</span>
