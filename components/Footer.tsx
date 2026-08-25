@@ -66,7 +66,7 @@ export default function Footer({ locale }: { locale: Locale }) {
             <span>© {site.short[locale]}. {t.footer.rights}</span>
             <span>{site.name[locale]}</span>
           </div>
-          <p style={{ margin: '14px 0 0', fontSize: 11.5, lineHeight: 1.6, color: '#6f8093' }}>{t.footer.companyInfo}</p>
+          <p style={{ margin: '14px 0 0', fontSize: 11.5, lineHeight: 1.6, color: '#6f8093', whiteSpace: 'pre-line' }}>{t.footer.companyInfo}</p>
         </div>
       </div>
 

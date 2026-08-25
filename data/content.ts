@@ -231,7 +231,7 @@ const ar: Dict = {
     linksHeading: 'روابط المبادرة',
     disclaimer:
       'المحتوى المنشور في هذا الموقع لأغراض التوعية والمعرفة العامة فقط، ولا يُعد استشارة قانونية أو مالية أو استثمارية.',
-    companyInfo: 'GRG Management Consultancy F.Z.E · رخصة تجارية رقم 56354 · منطقة عجمان الحرة، دولة الإمارات العربية المتحدة',
+    companyInfo: 'GRG Management Consultancy F.Z.E\nمنطقة عجمان الحرة\nدولة الإمارات العربية المتحدة\nرخصة تجارية رقم 56354',
     ctaLine: 'للحالات التي تحتاج إلى تقييم مهني، يرجى زيارة الموقع الرسمي لمجموعة الخليج لاسترجاع الأموال.',
     rights: 'جميع الحقوق محفوظة.',
   },
@@ -389,7 +389,7 @@ const en: Dict = {
     linksHeading: 'Initiative links',
     disclaimer:
       'The content published on this site is for awareness and general knowledge purposes only, and does not constitute legal, financial, or investment advice.',
-    companyInfo: 'GRG Management Consultancy F.Z.E · Trade License No. 56354 · Ajman Free Zone, United Arab Emirates',
+    companyInfo: 'GRG Management Consultancy F.Z.E\nAjman Free Zone\nUnited Arab Emirates\nTrade License No. 56354',
     ctaLine: 'For cases that require a professional assessment, please visit the official Gulf Recovery Group site.',
     rights: 'All rights reserved.',
   },

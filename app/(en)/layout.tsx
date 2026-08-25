@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     siteName: site.name.en,
-    locale: 'en_US',
+    locale: 'en_AE',
     alternateLocale: 'ar_AE',
     url: '/en',
   },

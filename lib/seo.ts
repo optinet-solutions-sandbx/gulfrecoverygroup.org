@@ -21,8 +21,8 @@ export function buildMeta({
     },
     openGraph: {
       type: 'website',
-      locale: locale === 'ar' ? 'ar_AE' : 'en_US',
-      alternateLocale: locale === 'ar' ? 'en_US' : 'ar_AE',
+      locale: locale === 'ar' ? 'ar_AE' : 'en_AE',
+      alternateLocale: locale === 'ar' ? 'en_AE' : 'ar_AE',
       url: self,
       title,
       description,

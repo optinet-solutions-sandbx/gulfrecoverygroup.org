@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     type: 'website',
     siteName: site.name.ar,
     locale: 'ar_AE',
-    alternateLocale: 'en_US',
+    alternateLocale: 'en_AE',
     url: '/',
   },
   verification: {

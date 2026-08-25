@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: article.title,
       description: article.description,
       alternates: { canonical: path, languages: articleLanguages(article.slug, 'en') },
-      openGraph: { type: 'article', locale: 'en_US', url: path, title: article.title, description: article.description },
+      openGraph: { type: 'article', locale: 'en_AE', url: path, title: article.title, description: article.description },
     };
   }
   const route = routeBySlug(slug, 'en');
