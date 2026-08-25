@@ -33,3 +33,10 @@
   ExpiresByType image/svg+xml "access plus 1 week"
   ExpiresByType text/html "access plus 0 seconds"
 </IfModule>
+
+# Unmatched paths must return a real 404, not Apache's 500.
+# `output: "export"` writes each route as <slug>/index.html and Next emits a
+# built-in out/404.html; without this directive Bluehost's Apache answers 500
+# for every unknown path (including legacy URLs such as /sitemap_index.xml and
+# /wp-sitemap.xml), which Ahrefs reports as a 5XX error.
+ErrorDocument 404 /404.html
