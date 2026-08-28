@@ -40,3 +40,11 @@
 # for every unknown path (including legacy URLs such as /sitemap_index.xml and
 # /wp-sitemap.xml), which Ahrefs reports as a 5XX error.
 ErrorDocument 404 /404.html
+
+# Stopgap: extensionless unknown paths (e.g. /foo, /sitemap_index.xml) come
+# back from Bluehost's PHP/FastCGI handler as a raw 500, not 404, so the
+# ErrorDocument 404 above never fires for them. This at least shows the 404
+# page's content instead of Apache's default error page; the HTTP status for
+# these paths still reports 500 until the account-level handler config is
+# fixed in cPanel.
+ErrorDocument 500 /404.html
