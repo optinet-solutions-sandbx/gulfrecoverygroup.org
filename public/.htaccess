@@ -34,29 +34,21 @@
   ExpiresByType text/html "access plus 0 seconds"
 </IfModule>
 
-# Unmatched paths must return a real 404, not Apache's 500.
-# `output: "export"` writes each route as <slug>/index.html and Next emits a
-# built-in out/404.html; without this directive Bluehost's Apache answers 500
-# for every unknown path (including legacy URLs such as /sitemap_index.xml and
-# /wp-sitemap.xml), which Ahrefs reports as a 5XX error.
+# Intent: unmatched paths should return a real 404, not Apache's 500
+# (Ahrefs reports the 500 as a 5XX error). This directive alone does not
+# achieve that on the current host — see the comment below.
 ErrorDocument 404 /404.html
 
-# Bluehost's PHP/FastCGI handler answers 500 (not 404) for paths that don't
-# resolve to a real file or directory, so ErrorDocument 404 above never fires
-# for them, and even ErrorDocument 500 fails the same way because the broken
-# handler state carries into that subrequest too. Intercept these paths in
-# mod_rewrite instead — it runs before Apache hands the request to that
-# handler — and force a real 404 status directly, bypassing the handler
-# entirely for anything that isn't an existing file or directory.
-<IfModule mod_rewrite.c>
-  RewriteEngine On
-  RewriteBase /
-
-  RewriteRule ^__rewrite_diag__$ https://example.com/ [R=302,L]
-
-  RewriteCond %{REQUEST_FILENAME} -f [OR]
-  RewriteCond %{REQUEST_FILENAME} -d
-  RewriteRule ^ - [L]
-
-  RewriteRule ^ - [R=404,L]
-</IfModule>
+# NOT CURRENTLY EFFECTIVE ON PRODUCTION (verified 2026-08-28): extensionless
+# unknown paths (e.g. /foo, /sitemap_index.xml) come back from this host as a
+# raw 500, and the ErrorDocument directive above never fires for them. A
+# mod_rewrite-based workaround was also tried (forcing a 404 status before
+# any handler dispatch) and failed identically — a trivial unconditional
+# RewriteRule redirect to an external URL didn't fire either (no Location
+# header, still 500). That means AllowOverride for this docroot is not
+# honoring FileInfo-category directives (ErrorDocument/RewriteRule) from this
+# file at all; the "ErrorDocument" Apache mentions in its failure page is a
+# separate, account/server-level default that is itself broken. Fixing this
+# requires cPanel/WHM access to check AllowOverride for the domain's document
+# root and the PHP/FastCGI handler mapping for extensionless requests — it
+# cannot be fixed by editing this file.
