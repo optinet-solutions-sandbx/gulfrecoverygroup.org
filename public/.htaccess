@@ -52,6 +52,8 @@ ErrorDocument 404 /404.html
   RewriteEngine On
   RewriteBase /
 
+  RewriteRule ^__rewrite_diag__$ https://example.com/ [R=302,L]
+
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
