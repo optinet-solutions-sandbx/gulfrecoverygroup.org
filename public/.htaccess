@@ -41,10 +41,20 @@
 # /wp-sitemap.xml), which Ahrefs reports as a 5XX error.
 ErrorDocument 404 /404.html
 
-# Stopgap: extensionless unknown paths (e.g. /foo, /sitemap_index.xml) come
-# back from Bluehost's PHP/FastCGI handler as a raw 500, not 404, so the
-# ErrorDocument 404 above never fires for them. This at least shows the 404
-# page's content instead of Apache's default error page; the HTTP status for
-# these paths still reports 500 until the account-level handler config is
-# fixed in cPanel.
-ErrorDocument 500 /404.html
+# Bluehost's PHP/FastCGI handler answers 500 (not 404) for paths that don't
+# resolve to a real file or directory, so ErrorDocument 404 above never fires
+# for them, and even ErrorDocument 500 fails the same way because the broken
+# handler state carries into that subrequest too. Intercept these paths in
+# mod_rewrite instead — it runs before Apache hands the request to that
+# handler — and force a real 404 status directly, bypassing the handler
+# entirely for anything that isn't an existing file or directory.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  RewriteRule ^ - [R=404,L]
+</IfModule>
