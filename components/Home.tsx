@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import {
   ShieldCheck, AlertTriangle, Smartphone, FileBarChart2, BookOpen, Users,
-  ExternalLink, MessageCircle, ArrowRight, ArrowLeft, FileText, CircleAlert,
+  MessageCircle, ArrowRight, ArrowLeft, FileText, CircleAlert,
   BadgeCheck, Stethoscope,
 } from 'lucide-react';
 import type { Locale } from '@/lib/utils';
@@ -43,9 +43,6 @@ export default function Home({ locale }: { locale: Locale }) {
           <div className="reveal" style={{ display: 'flex', flexWrap: 'wrap', gap: 12, justifyContent: 'center', marginTop: 32, animationDelay: revealDelay(0.24) }}>
             <a href="#about" style={btnPrimary(font)}>
               {t.ui.explore}<Fwd size={17} aria-hidden />
-            </a>
-            <a href={site.officialSite} target="_blank" rel="noopener noreferrer" style={btnOutline(font)}>
-              {t.ui.officialSite}<ExternalLink size={15} aria-hidden />
             </a>
           </div>
 
@@ -200,9 +197,6 @@ export default function Home({ locale }: { locale: Locale }) {
             <h2 style={{ margin: '0 0 16px', color: '#fff', fontSize: 'clamp(1.5rem,2.8vw,2rem)' }}>{t.home.ctaTitle}</h2>
             <p style={{ margin: '0 auto 30px', maxWidth: 620, fontSize: 16, lineHeight: 1.8, color: '#cdd9e6' }}>{t.home.ctaBody}</p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, justifyContent: 'center' }}>
-              <a href={site.officialSite} target="_blank" rel="noopener noreferrer" style={{ ...btnPrimary(font), background: '#fff', color: 'var(--navy)' }}>
-                {t.ui.officialSite}<ExternalLink size={15} aria-hidden />
-              </a>
               <a href={site.whatsappHref[locale]} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '13px 24px', borderRadius: 8, background: 'var(--official)', color: '#fff', fontFamily: font, fontSize: 15, fontWeight: 600 }}>
                 <MessageCircle size={16} aria-hidden />{t.ui.whatsapp}
               </a>

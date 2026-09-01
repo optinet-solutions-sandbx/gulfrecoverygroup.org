@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ExternalLink, MessageCircle } from 'lucide-react';
+import { MessageCircle } from 'lucide-react';
 import type { Locale } from '@/lib/utils';
 import { fontFor } from '@/lib/utils';
 import { site } from '@/data/site';
@@ -34,9 +34,6 @@ export default function Footer({ locale }: { locale: Locale }) {
             {t.footer.ctaLine}
           </p>
           <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-            <a href={site.officialSite} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '11px 18px', borderRadius: 6, border: '1.5px solid rgba(255,255,255,0.35)', color: '#fff', fontSize: 13.5, fontWeight: 600 }}>
-              {t.ui.officialSite}<ExternalLink size={14} aria-hidden />
-            </a>
             <a href={site.whatsappHref[locale]} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '11px 18px', borderRadius: 6, background: 'var(--official)', color: '#fff', fontSize: 13.5, fontWeight: 600 }}>
               <MessageCircle size={15} aria-hidden />{t.ui.whatsapp}
             </a>

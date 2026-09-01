@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { ExternalLink, MessageCircle, Send, CheckCircle2, Mail, ShieldCheck } from 'lucide-react';
+import { MessageCircle, Send, CheckCircle2, Mail, ShieldCheck } from 'lucide-react';
 import type { Locale } from '@/lib/utils';
 import { fontFor } from '@/lib/utils';
 import { site } from '@/data/site';
@@ -119,9 +119,6 @@ export default function ContactPage({ locale }: { locale: Locale }) {
             <a href={`mailto:${site.email}`} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '18px 20px', background: '#fff', border: '1px solid var(--line)', borderRadius: 12 }}>
               <Mail size={19} style={{ color: 'var(--official)' }} aria-hidden />
               <span style={{ fontSize: 14, color: 'var(--navy)', fontWeight: 600, wordBreak: 'break-all' }}>{site.email}</span>
-            </a>
-            <a href={site.officialSite} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '13px', borderRadius: 8, border: '1.5px solid var(--navy)', color: 'var(--navy)', fontSize: 14, fontWeight: 600 }}>
-              {t.ui.officialSite}<ExternalLink size={14} aria-hidden />
             </a>
             <a href={site.whatsappHref[locale]} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '13px', borderRadius: 8, background: 'var(--official)', color: '#fff', fontSize: 14, fontWeight: 600 }}>
               <MessageCircle size={15} aria-hidden />{t.ui.whatsapp}

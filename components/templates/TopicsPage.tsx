@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { FileText, ExternalLink, MessageCircle } from 'lucide-react';
+import { FileText, MessageCircle } from 'lucide-react';
 import type { Locale } from '@/lib/utils';
 import { fontFor } from '@/lib/utils';
 import { site } from '@/data/site';
@@ -62,9 +62,6 @@ export default function TopicsPage({ locale, data }: { locale: Locale; data: Top
             <p style={{ margin: 0, maxWidth: 520, fontSize: 14.5, lineHeight: 1.7, color: 'var(--slate)' }}>{t.home.ctaBody}</p>
           </div>
           <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-            <a href={site.officialSite} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '12px 20px', borderRadius: 8, border: '1.5px solid var(--navy)', color: 'var(--navy)', fontSize: 14, fontWeight: 600 }}>
-              {t.ui.officialSite}<ExternalLink size={14} aria-hidden />
-            </a>
             <a href={site.whatsappHref[locale]} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '12px 20px', borderRadius: 8, background: 'var(--official)', color: '#fff', fontSize: 14, fontWeight: 600 }}>
               <MessageCircle size={15} aria-hidden />{t.ui.whatsapp}
             </a>
