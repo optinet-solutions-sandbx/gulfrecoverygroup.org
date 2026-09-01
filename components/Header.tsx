@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, ExternalLink, MessageCircle, ShieldCheck } from 'lucide-react';
+import { Menu, X, MessageCircle, ShieldCheck } from 'lucide-react';
 import type { Locale } from '@/lib/utils';
 import { fontFor } from '@/lib/utils';
 import { site } from '@/data/site';
@@ -97,14 +97,6 @@ export default function Header({ locale }: { locale: Locale }) {
                 {t.ui.langSwitch}
               </Link>
 
-              <a href={site.officialSite} target="_blank" rel="noopener noreferrer" className="cta-official" style={{
-                display: 'inline-flex', alignItems: 'center', gap: 7, fontFamily: font, fontSize: 13, fontWeight: 600,
-                color: 'var(--navy)', padding: '9px 15px', border: '1.5px solid var(--navy)', borderRadius: 6, whiteSpace: 'nowrap',
-              }}>
-                {isRTL ? t.ui.officialSite : 'Official site'}
-                <ExternalLink size={14} aria-hidden />
-              </a>
-
               <a href={site.whatsappHref[locale]} target="_blank" rel="noopener noreferrer" className="cta-wa" style={{
                 display: 'inline-flex', alignItems: 'center', gap: 7, fontFamily: font, fontSize: 13, fontWeight: 600,
                 color: '#fff', background: 'var(--official)', padding: '10px 15px', borderRadius: 6, whiteSpace: 'nowrap',
@@ -135,7 +127,6 @@ export default function Header({ locale }: { locale: Locale }) {
         @media (max-width: 1480px) {
           .desktop-nav  { display: none !important; }
           .hamburger    { display: flex !important; }
-          .cta-official { display: none !important; }
         }
         @media (max-width: 560px) {
           .logo-text   { display: none !important; }
@@ -193,9 +184,6 @@ export default function Header({ locale }: { locale: Locale }) {
         <div style={{ padding: '16px 16px 24px', borderTop: '1px solid var(--line)', display: 'flex', flexDirection: 'column', gap: 10 }}>
           <a href={site.whatsappHref[locale]} target="_blank" rel="noopener noreferrer" tabIndex={open ? 0 : -1} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '13px', borderRadius: 7, background: 'var(--official)', color: '#fff', fontFamily: font, fontSize: 14, fontWeight: 600 }}>
             <MessageCircle size={16} aria-hidden />{t.ui.whatsapp}
-          </a>
-          <a href={site.officialSite} target="_blank" rel="noopener noreferrer" tabIndex={open ? 0 : -1} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '12px', borderRadius: 7, border: '1.5px solid var(--navy)', color: 'var(--navy)', fontFamily: font, fontSize: 13.5, fontWeight: 600 }}>
-            {t.ui.officialSite}<ExternalLink size={14} aria-hidden />
           </a>
           <Link href={altHref} prefetch={false} tabIndex={open ? 0 : -1} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '11px', borderRadius: 7, border: '1px solid var(--line)', color: 'var(--navy-700)', fontFamily: font, fontSize: 13, fontWeight: 600 }}>
             {t.ui.langSwitch}
