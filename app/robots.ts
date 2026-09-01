@@ -14,7 +14,10 @@ export default function robots(): MetadataRoute.Robots {
       // waste crawl budget — keep crawlers off Cloudflare's internal paths.
       disallow: '/cdn-cgi/',
     },
-    sitemap: `${site.domain}/sitemap.xml`,
+    // /sitemap.xml is shadowed on production by a legacy WordPress/Yoast SEO
+    // rewrite that still intercepts that exact filename, so crawlers are
+    // pointed at /urls.xml instead — same content, unaffected filename.
+    sitemap: `${site.domain}/urls.xml`,
     host: site.domain,
   };
 }
