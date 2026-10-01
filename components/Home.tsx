@@ -32,7 +32,7 @@ export default function Home({ locale }: { locale: Locale }) {
         <div className="wrap" style={{ position: 'relative', padding: '72px 24px 84px', maxWidth: 900, textAlign: 'center' }}>
           <span className="kicker reveal" style={{ justifyContent: 'center', animationDelay: revealDelay(0) }}>
             <ShieldCheck size={15} aria-hidden />
-            {isRTL ? 'مبادرة توعوية مستقلة' : 'An independent awareness initiative'}
+            {isRTL ? 'مبادرة توعوية للتثقيف حول الاحتيال المالي' : 'An educational financial-fraud awareness initiative'}
           </span>
           <h1 className="reveal" style={{ margin: '18px auto 0', fontSize: 'clamp(2rem, 4.6vw, 3.3rem)', lineHeight: 1.2, maxWidth: 800, color: 'var(--navy)', animationDelay: revealDelay(0.08) }}>
             {t.home.heroTitle}
