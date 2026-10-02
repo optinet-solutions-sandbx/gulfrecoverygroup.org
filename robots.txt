@@ -1,0 +1,6 @@
+User-Agent: *
+Allow: /
+Disallow: /cdn-cgi/
+
+Host: https://gulfrecoverygroup.org
+Sitemap: https://gulfrecoverygroup.org/urls.xml
