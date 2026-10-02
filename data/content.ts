@@ -73,6 +73,7 @@ export interface Dict {
     blurb: string;
     linksHeading: string;
     disclaimer: string;
+    operator: string;
     companyInfo: string;
     ctaLine: string;
     rights: string;
@@ -88,7 +89,7 @@ const ar: Dict = {
     home: 'الرئيسية',
     skipToContent: 'تخطَّ إلى المحتوى',
     breadcrumbHome: 'الرئيسية',
-    ribbon: 'مبادرة توعوية مستقلة · لأغراض التوعية العامة والحماية من الاحتيال المالي',
+    ribbon: 'مبادرة توعوية للتثقيف حول الاحتيال المالي · لأغراض التوعية العامة والحماية من الاحتيال المالي',
     professionalNote: 'هل تحتاج إلى تقييم مهني؟',
     langSwitch: 'English',
   },
@@ -141,7 +142,7 @@ const ar: Dict = {
     ],
     ctaTitle: 'هل تحتاج إلى تقييم مهني؟',
     ctaBody:
-      'إذا كنت تواجه حالة تتعلق بالاحتيال المالي أو الاستثماري وتحتاج إلى مراجعة متخصصة، يمكنك التواصل مع الموقع الرسمي لمجموعة الخليج لاسترجاع الأموال.',
+      'إذا كنت تواجه حالة تتعلق بالاحتيال المالي أو الاستثماري وتحتاج إلى مراجعة متخصصة، يمكنك التواصل مع الموقع الرسمي لمجموعة الخليج لاسترجاع الأموال. يتم تشغيل مجموعة الخليج لاسترجاع الأموال وهذا الموقع من قبل GRG Management Consultancy F.Z.E.',
   },
   about: {
     title: 'عن المبادرة',
@@ -227,10 +228,12 @@ const ar: Dict = {
     ],
   },
   footer: {
-    blurb: 'مبادرة توعوية مستقلة تعمل على نشر الوعي حول الاحتيال المالي والاستثماري وحماية الأفراد قبل اتخاذ أي قرار مالي.',
+    blurb: 'مبادرة توعوية للتثقيف حول الاحتيال المالي تعمل على نشر الوعي حول الاحتيال المالي والاستثماري وحماية الأفراد قبل اتخاذ أي قرار مالي.',
     linksHeading: 'روابط المبادرة',
     disclaimer:
       'المحتوى المنشور في هذا الموقع لأغراض التوعية والمعرفة العامة فقط، ولا يُعد استشارة قانونية أو مالية أو استثمارية.',
+    operator:
+      'يتم تشغيل هذا الموقع التوعوي بواسطة GRG Management Consultancy F.Z.E. ويقدم محتوى عاماً للتوعية بالاحتيال المالي. يتم تقديم خدمات الاستشارات المهنية بشكل منفصل من خلال الموقع الرسمي لـ Gulf Recovery Group.',
     companyInfo: 'GRG Management Consultancy F.Z.E\nمنطقة عجمان الحرة\nدولة الإمارات العربية المتحدة\nرخصة تجارية رقم 56354',
     ctaLine: 'للحالات التي تحتاج إلى تقييم مهني، يرجى زيارة الموقع الرسمي لمجموعة الخليج لاسترجاع الأموال.',
     rights: 'جميع الحقوق محفوظة.',
@@ -246,7 +249,7 @@ const en: Dict = {
     home: 'Home',
     skipToContent: 'Skip to content',
     breadcrumbHome: 'Home',
-    ribbon: 'An independent awareness initiative · for public-interest education and protection from financial fraud',
+    ribbon: 'An educational financial-fraud awareness initiative · for public-interest education and protection from financial fraud',
     professionalNote: 'Do you need a professional assessment?',
     langSwitch: 'العربية',
   },
@@ -299,7 +302,7 @@ const en: Dict = {
     ],
     ctaTitle: 'Do you need a professional assessment?',
     ctaBody:
-      'If you are dealing with a financial or investment fraud situation and need a specialist review, you can reach the official Gulf Recovery Group site.',
+      'If you are dealing with a financial or investment fraud situation and need a specialist review, you can reach the official Gulf Recovery Group site. Gulf Recovery Group and this website are both operated by GRG Management Consultancy F.Z.E.',
   },
   about: {
     title: 'About the Initiative',
@@ -385,10 +388,12 @@ const en: Dict = {
     ],
   },
   footer: {
-    blurb: 'An independent awareness initiative that works to spread awareness of financial and investment fraud and to protect individuals before they make any financial decision.',
+    blurb: 'An educational financial-fraud awareness initiative that works to spread awareness of financial and investment fraud and to protect individuals before they make any financial decision.',
     linksHeading: 'Initiative links',
     disclaimer:
       'The content published on this site is for awareness and general knowledge purposes only, and does not constitute legal, financial, or investment advice.',
+    operator:
+      'This educational website is operated by GRG Management Consultancy F.Z.E. and provides general financial-fraud awareness content. Professional consultancy services are provided separately through the official Gulf Recovery Group service website.',
     companyInfo: 'GRG Management Consultancy F.Z.E\nAjman Free Zone\nUnited Arab Emirates\nTrade License No. 56354',
     ctaLine: 'For cases that require a professional assessment, please visit the official Gulf Recovery Group site.',
     rights: 'All rights reserved.',

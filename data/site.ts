@@ -43,7 +43,7 @@ export const site = {
     en: 'Arab Center for Financial Consulting',
   },
   tagline: {
-    ar: 'مبادرة توعوية مستقلة لحماية المستثمرين من الاحتيال المالي',
-    en: 'An independent public-awareness initiative protecting investors from financial fraud',
+    ar: 'مبادرة توعوية للتثقيف حول الاحتيال المالي لحماية المستثمرين من الاحتيال المالي',
+    en: 'An educational financial-fraud awareness initiative protecting investors from financial fraud',
   },
 } as const;
